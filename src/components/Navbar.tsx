@@ -29,6 +29,8 @@ export default function Navbar() {
     const [openPageId, setOpenPageId] = useState<number | null>(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [mobileOpenPageId, setMobileOpenPageId] = useState<number | null>(null);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    
 
     useEffect(() => {
         setMounted(true);
@@ -104,7 +106,7 @@ export default function Navbar() {
                                 </Link>
 
                                 {children.length > 0 && openPageId === page.id && (
-                                    <div className="absolute left-0 bg-white text-black rounded shadow-lg z-50 w-64">
+                                    <div className="absolute left-0 bg-stone-100 text-red-600 rounded text-shadow z-50 w-64">
                                         {children.map((child) => {
                                             const isActiveChild = pathname === `/${page.slug}/${child.slug}`;
                                             return (
@@ -125,7 +127,68 @@ export default function Navbar() {
                         );
                     })}
                 </div>
+                {/* Mobile Menu Button */}
+                <button
+                className="md:hidden text-white hover:text-[#48bdcb]"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                >
+                    {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                </button>
+                </div>
+
+                {/* Mobile Menu */}
+                    {mobileMenuOpen && (
+                    <div className="md:hidden mt-2 bg-stone-100 rounded-lg shadow-lg">
+                    {pages.map((page) => {
+                    const children = getChildren(page.id);
+                    const isOpen = mobileOpenPageId === page.id;
+                    const isActiveParent =
+                        pathname === `/${page.slug}` ||
+                        pathname.startsWith(`/${page.slug}/`) ||
+                        (page.slug === "home" && pathname === "/");
+
+                return (
+                    <div key={page.id} className="border-b border-gray-800">
+                        <div className="flex justify-between items-center px-4 py-3 text-lg">
+                            <Link
+                                href={`/${page.slug === "home" ? "" : page.slug}`}
+                                className={`${isActiveParent ? "text-[#48bdcb]" : "hover:text-[#48bdcb]"}`}
+                            >
+                            {page.title}
+                            </Link>
+                                {children.length > 0 && (
+                                <button onClick={() => setMobileOpenPageId(isOpen ? null : page.id)}>
+                            <ChevronDown
+                                size={16}
+                                className={`${isOpen ? "rotate-180" : ""} transition-transform`}
+                            />
+                        </button>
+                    )}
+                </div>
+
+                {children.length > 0 && isOpen && (
+                    <div className="pl-6 pb-2">
+                        {children.map((child) => {
+                            const isActiveChild = pathname === `/${page.slug}/${child.slug}`;
+                            return (
+                                <Link
+                                    key={child.id}
+                                    href={`/${page.slug}/${child.slug}`}
+                                    className={`block py-2 ${
+                                        isActiveChild ? "text-[#48bdcb]" : "hover:text-[#48bdcb]"
+                                    }`}
+                                >
+                            {child.title}
+                            </Link>
+                            );
+                        })}
+                    </div>
+                    )}
+                </div>
+                );
+            })}
             </div>
-        </nav>
+        )}
+    </nav>
     );
 }

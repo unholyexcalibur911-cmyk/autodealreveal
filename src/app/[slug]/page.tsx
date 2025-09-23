@@ -1,19 +1,19 @@
 import Section1 from "@/components/Section1";
 import Hero from "@/components/Hero";
 
-async function getHomePage() {
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+
   const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
   const res = await fetch(
-    `${baseUrl}/api/pages?populate[sections][populate]=*`,
+    `${baseUrl}/api/pages?filters[slug][$eq]=${slug}&populate=sections.background&populate=sections.image&populate=sections.BackgroundImage&populate=sections.item.icon&populate=sections.column_item_content.image`,
     { cache: "no-store" }
   );
-  const data = await res.json();
-  return data.data?.[0] || {};
-}
 
-export default async function Home() {
-  const page = await getHomePage();
-  console.log("Sections:", page.sections);
+  const json = await res.json();
+  const page = json.data?.[0];
+
+  if (!page) return <div className="p-100 text-7xl bg-black text-white text-center font-[Roboto]">404 | Page not found</div>;
 
   return (
     <main>
