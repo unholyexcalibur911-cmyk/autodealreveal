@@ -63,15 +63,20 @@ export default function Footer() {
             <Link
                 href="/"
                 className="text-lg text-[#1badbe] hover:text-white transition-colors duration-300 ease-in-out"
+                >Home
+            </Link>
+            <Link
+                href="/About"
+                className="text-lg text-[#1badbe] hover:text-white transition-colors duration-300 ease-in-out"
                 >About
             </Link>
             <Link
-                href="/"
+                href="/Inventory"
                 className="text-lg text-[#1badbe] hover:text-white transition-colors duration-300 ease-in-out"
                 >Inventory
             </Link>
             <Link
-                href="/"
+                href="/Products"
                 className="text-lg text-[#1badbe] hover:text-white transition-colors duration-300 ease-in-out"
                 >Products
             </Link>
@@ -88,7 +93,7 @@ export default function Footer() {
                 priority
                 />
                 <div className="mt-12 space-y-2 text-lg">
-                <div className="font-bold">Auto Deal Reveal, Inc.</div>
+                <div className="text-noShadow font-bold">Auto Deal Reveal, Inc.</div>
                 {/* Location/Address */}
                 <div className="font-light"></div> 
                 <div className="font-light"></div>
@@ -98,7 +103,7 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className="px-12">
-            <div className="w-full border-t text-center py-6 text-sm leading-relaxed">
+            <div className="w-full border-t text-center py-6 text-sm leading-relaxed text-noShadow">
                 Copyright © 2025 Auto Deal Reveal| All Rights Reserved.
             </div>
         </div>

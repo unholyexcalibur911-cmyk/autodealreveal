@@ -10,7 +10,7 @@ interface TextSectionProps {
 
 export default function TextSection({ title, content, background }: TextSectionProps) {
     return (
-        <section className="relative py-36 md:py-48 text-black bg-stone-200">
+        <section className="relative py-36 md:py-48 text-gray-900 bg-stone-200">
         {background?.url && (
             <Image
                 src={background.url}

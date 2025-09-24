@@ -22,6 +22,7 @@ interface ChildPage {
 }
 
 export default function Navbar() {
+    const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
     const [mounted, setMounted] = useState(false);
     const [pages, setPages] = useState<Page[]>([]);
@@ -33,21 +34,28 @@ export default function Navbar() {
 
     useEffect(() => {
         setMounted(true);
+        const handleScroll = () => {
+            if (window.scrollY > 250) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
+    useEffect(() => {
         async function fetchPages() {
             try {
                 const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
-                
                 const pageRes = await fetch(`${baseUrl}/api/pages?populate[Sections][populate]=*`);
                 const pageData = await pageRes.json();
-
                 const childRes = await fetch(`${baseUrl}/api/childpages?populate[page]=true&populate[sections][populate]=*`);
                 const childData = await childRes.json();
-
-                const order = ["home", "about", "services", "gallery"];
-
+                const order = ["home", "about", "inventory", "products"];
                 const sortedPages = [...pageData.data || []].sort (
-                    (a: Page, b: Page) => order.indexOf(b.slug) - order.indexOf(a.slug)
+                    (b: Page, a: Page) => order.indexOf(b.slug) - order.indexOf(a.slug)
                 );
                 setPages(sortedPages);
                 setChildPages(childData.data || []);
@@ -65,7 +73,7 @@ export default function Navbar() {
     const getChildren = (pageId: number) => childPages.filter((child) => child.page?.id === pageId);
 
     return (
-        <nav className="sticky top-0 z-50 opacity-100 text-red-600 font-bold text-shadow-lg bg-stone-200 px-6 md:pr-15 lg:pr-20 whitespace-nowrap py-10 ">
+        <nav className={`sticky top-0 z-50 opacity-100 text-red-600 md:pr-15 px-6 py-8 lg:pr-20 whitespace-nowrap transition-all duration-300 ${isScrolled ? 'bg-stone-200 py-10' : 'bg-transparent'}`}> 
             <div className="flex justify-between items-center">
                 {/* Logo or Brand Name */}
                 <Link href="/" className="flex items-left pl-4">
@@ -97,7 +105,7 @@ export default function Navbar() {
                                 <Link
                                     href={page.slug === "home" ? "/" : `/${page.slug}`}
                                     className={`flex items-center gap-2 text-2xl ${
-                                        isActiveParent ? "text-[3c3b6e]" : "hover:text-[1565c0]"
+                                        isActiveParent ? "text-[#3c3b6e]" : "hover:text-[#1565c0]"
                                     }`}
                                 >
                                     {page.title}
@@ -105,15 +113,15 @@ export default function Navbar() {
                                 </Link>
 
                                 {children.length > 0 && openPageId === page.id && (
-                                    <div className="absolute left-0 bg-stone-100 text-red-600 rounded text-shadow z-50 w-64">
+                                    <div className="absolute left-0 bg-stone-100 text-red-600 rounded z-50 w-64">
                                         {children.map((child) => {
                                             const isActiveChild = pathname === `/${page.slug}/${child.slug}`;
                                             return (
                                                 <Link
                                                     key={child.id}
                                                     href={`/${page.slug}/${child.slug}`}
-                                                    className={`block px-4 py-2 hover:bg-gray-200 ${
-                                                        isActiveChild ? "font-bold bg-gray-200" : ""
+                                                    className={`block px-4 py-2 hover:bg-blue-200 ${
+                                                        isActiveChild ? "font-bold bg-[#1565c0]" : ""
                                                     }`}
                                                 >
                                                     {child.title}
@@ -151,7 +159,7 @@ export default function Navbar() {
                         <div className="flex justify-between items-center px-4 py-3 text-lg">
                             <Link
                                 href={`/${page.slug === "home" ? "" : page.slug}`}
-                                className={`${isActiveParent ? "text-[#48bdcb]" : "hover:text-[#48bdcb]"}`}
+                                className={`${isActiveParent ? "text-[#3c3b6e]" : "hover:text-[#1565c0]"}`}
                             >
                             {page.title}
                             </Link>

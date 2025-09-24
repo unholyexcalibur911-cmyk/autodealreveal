@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar/>
-        <main>{children}</main>
+        <main className="-m-31">{children}</main>
         {/* the map should be here */}
         <ContactUs/>
         <Footer/>
