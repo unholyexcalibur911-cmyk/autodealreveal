@@ -9,6 +9,7 @@ interface TextSectionProps {
 }
 
 export default function TextSection({ title, content, background }: TextSectionProps) {
+  const formattedContent = content ? content.replace(/\n/g, "<br />") : "";
   return (
     <section className="relative py-24 text-black bg-stone-300">
       {background?.url && (
@@ -28,7 +29,7 @@ export default function TextSection({ title, content, background }: TextSectionP
         {content && (
           <div
             className="richtext text-lg md:text-xl mx-auto"
-            dangerouslySetInnerHTML={{ __html: content }}
+            dangerouslySetInnerHTML={{ __html: formattedContent }}
           />
         )}
 

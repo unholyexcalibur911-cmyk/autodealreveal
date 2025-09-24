@@ -25,6 +25,9 @@ export default function Section1({
   buttonText2,
   buttonURL2,
 }: Section1Props) {
+
+  const formattedContent = content ? content.replace(/\n/g, "<br />") : "";
+
   return (
     <section className="relative py-16 2xl:py-42 text-stone-200 ">
       {background?.url && (
@@ -45,7 +48,7 @@ export default function Section1({
           {content && (
             <div
               className="richtext 2xl:text-left"
-              dangerouslySetInnerHTML={{ __html: content }}
+              dangerouslySetInnerHTML={{ __html: formattedContent }}
             />
           )}
 

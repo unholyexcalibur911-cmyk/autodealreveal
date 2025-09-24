@@ -25,6 +25,9 @@ export default function Section2({
   buttonText2,
   buttonURL2,
 }: Section2Props) {
+  // Convert \n to <br /> in content if present
+  const formattedContent = content ? content.replace(/\n/g, "<br />") : "";
+
   return (
     <section className="relative py-36 text-white">
       {background?.url && (
@@ -58,7 +61,7 @@ export default function Section2({
           {content && (
             <div
               className="richtext text-left"
-              dangerouslySetInnerHTML={{ __html: content }}
+              dangerouslySetInnerHTML={{ __html: formattedContent }}
             />
           )}
 
