@@ -39,7 +39,7 @@ export default function Section2({
 
       <h1 className="text-4xl md:text-7xl font-bold mb-12 2xl:mb-24 text-center lg:px-10 ">{title}</h1>
 
-      <div className="wrap-reverse relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center text-center lg:text-left">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center text-center lg:text-left">
 
         {/* Left column */}
         {image?.url && (
@@ -67,7 +67,7 @@ export default function Section2({
             {buttonText && buttonURL && (
               <a
                 href={buttonURL}
-                className="inline-block bg-black text-white px-14 py-4 rounded-xl font-extrabold hover:text-black hover:bg-[#36a9b6] transition-colors duration-400"
+                className="inline-block bg-black text-white px-14 py-4 rounded-xl font-bold hover:text-black hover:bg-[#36a9b6] transition-colors duration-400"
               >
                 {buttonText}
               </a>
@@ -76,7 +76,7 @@ export default function Section2({
             {buttonText2 && buttonURL2 && (
               <a
                 href={buttonURL2}
-                className="inline-block bg-[#48bdcb] text-black px-10 py-4 rounded-xl font-extrabold hover:bg-[#89e9f5] transition-colors duration-300"
+                className="inline-block bg-[#48bdcb] text-black px-10 py-4 rounded-xl font-bold hover:bg-[#89e9f5] transition-colors duration-300"
               >
                 {buttonText2}
               </a>
