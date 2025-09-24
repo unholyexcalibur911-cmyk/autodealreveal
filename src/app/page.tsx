@@ -1,13 +1,19 @@
 import Section1 from "@/components/Section1";
 import Section2 from "@/components/Section2";
+import TextSection from "@/components/TextSections";
 import Hero from "@/components/Hero";
 
 async function getHomePage() {
   const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
   const res = await fetch(
-    `${baseUrl}/api/pages?populate[sections][populate]=*`,
+    `${baseUrl}/api/pages?populate[Sections][populate]=*`,
     { cache: "no-store" }
   );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch home page data");
+  }
+
   const data = await res.json();
   return data.data?.[0] || {};
 }
@@ -73,6 +79,14 @@ export default async function Home() {
                 buttonText2={section.button_text_2}
                 buttonURL2={section.button_url_2}
               />
+              );
+          case "sections.textsection":
+              return (
+                <TextSection
+                  key={index}
+                  title={section.title}
+                  content={section.content}
+                />
               );
           default:
             return null;

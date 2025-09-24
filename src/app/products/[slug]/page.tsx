@@ -7,7 +7,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ slug:
 
   const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
   const res = await fetch(
-    `${baseUrl}/api/pages?filters[slug][$eq]=${slug}&populate[sections][populate]=*`,
+    `${baseUrl}/api/childpage?filters[slug][$eq]=${slug}&populate[sections][populate]=*`,
     { cache: "no-store" }
   );
 

@@ -26,7 +26,7 @@ export default function Section1({
   buttonURL2,
 }: Section1Props) {
   return (
-    <section className="relative py-16 2xl:py-42 text-white text-shadow-lg">
+    <section className="relative py-16 2xl:py-42 text-black text-shadow-lg">
       {background?.url && (
         <Image
           src={background.url}

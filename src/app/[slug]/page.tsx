@@ -2,14 +2,15 @@ import Section1 from "@/components/Section1";
 import Section2 from "@/components/Section2";
 import Hero from "@/components/Hero";
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function Page({ params }: 
+  { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
 
-  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
-  const res = await fetch(
-    `${baseUrl}/api/pages?filters[slug][$eq]=${slug}&populate=sections.background&populate=sections.image&populate=sections.BackgroundImage&populate=sections.item.icon&populate=sections.column_item_content.image`,
-    { cache: "no-store" }
-  );
+    const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
+    const res = await fetch(
+      `${baseUrl}/api/childpages?filters[slug][$eq]=${slug}populate[page]=true&populate[sections][populate]=*`,
+      { cache: "no-store" }
+    );
 
   const json = await res.json();
   const page = json.data?.[0];
