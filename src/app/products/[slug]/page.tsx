@@ -1,4 +1,5 @@
 import Section1 from "@/components/Section1";
+import Section2 from "@/components/Section2";
 import Hero from "@/components/Hero";
 
 export default async function ProductsPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -39,6 +40,40 @@ export default async function ProductsPage({ params }: { params: Promise<{ slug:
                 buttonURL={section.ButtonURL}
               />
             );
+          case "sections.section1":
+            return (
+              <Section1
+                key={index}
+                title={section.title}
+                subtitle={section.subtitle}
+                content={section.content}
+                background={
+                  section.background ? { url: section.background.url } : undefined
+                }
+                image={section.image ? { url: section.image.url } : undefined}
+                buttonText={section.button_text}
+                buttonURL={section.button_url}
+                buttonText2={section.button_text_2}
+                buttonURL2={section.button_url_2}
+              />
+            );
+          case "sections.section2":
+              return (
+                <Section2
+                key={index}
+                title={section.title}
+                subtitle={section.subtitle}
+                content={section.content}
+                background={
+                  section.background ? { url: section.background.url } : undefined
+                }
+                image={section.image ? { url: section.image.url } : undefined}
+                buttonText={section.button_text}
+                buttonURL={section.button_url}
+                buttonText2={section.button_text_2}
+                buttonURL2={section.button_url_2}
+              />
+              );
           default:
             return null;
         }

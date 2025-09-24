@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -27,7 +27,6 @@ export default function Navbar() {
     const [pages, setPages] = useState<Page[]>([]);
     const [childPages, setChildPages] = useState<ChildPage[]>([]); 
     const [openPageId, setOpenPageId] = useState<number | null>(null);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [mobileOpenPageId, setMobileOpenPageId] = useState<number | null>(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     
