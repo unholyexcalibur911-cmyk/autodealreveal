@@ -11,7 +11,7 @@ interface TextSectionProps {
 export default function TextSection({ title, content, background }: TextSectionProps) {
   const formattedContent = content ? content.replace(/\n/g, "<br />") : "";
   return (
-    <section className="relative py-24 text-black bg-stone-300">
+    <section className="min-h-[500px] relative py-24 text-gray-800 bg-stone-300">
       {background?.url && (
         <Image
           src={background.url}
@@ -23,8 +23,8 @@ export default function TextSection({ title, content, background }: TextSectionP
         />
       )}
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-left">
-        <h2 className="text-3xl md:text-5xl font-bold mb-6">{title}</h2>
+      <div className="text-stone-800 relative z-10 max-w-6xl mx-auto px-6 text-center">
+        <h2 className="text-3xl md:text-5xl font-bold mb-12">{title}</h2>
 
         {content && (
           <div

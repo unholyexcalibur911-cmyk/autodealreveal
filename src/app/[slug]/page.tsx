@@ -1,6 +1,6 @@
 import ColumnItemSection from "@/components/ColumnItemSections";
-import TextSectionCenter from "@/components/TextSectionCenter"
-import TextSectionLeft from "@/components/TextSectionLeft";
+import TextSectionCenterSM from "@/components/TextSectionLeft"
+import TextSectionLeft from "@/components/TextSectionCenter";
 import TextSection from "@/components/TextSections";
 import ItemSection from "@/components/ItemSection";
 import Section2 from "@/components/Section2";
@@ -108,7 +108,7 @@ export default async function Page({ params }:
                 );
               case "sections.text-center":
                 return (
-                  <TextSectionCenter
+                  <TextSectionCenterSM
                     key={index}
                     title={section.title}
                     content={section.content}
