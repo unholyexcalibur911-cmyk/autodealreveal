@@ -113,7 +113,7 @@ export default function Navbar() {
                                 </Link>
 
                                 {children.length > 0 && openPageId === page.id && (
-                                    <div className="absolute left-0 bg-stone-100 text-red-600 rounded z-50 w-64">
+                                    <div className="absolute left-0 bg-stone-300 text-red-600 rounded z-50 w-64">
                                         {children.map((child) => {
                                             const isActiveChild = pathname === `/${page.slug}/${child.slug}`;
                                             return (
