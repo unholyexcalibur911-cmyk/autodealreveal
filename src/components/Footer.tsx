@@ -66,17 +66,17 @@ export default function Footer() {
                 >Home
             </Link>
             <Link
-                href="/About"
+                href="/about-us"
                 className="text-lg text-[#1badbe] hover:text-white transition-colors duration-300 ease-in-out"
                 >About
             </Link>
             <Link
-                href="/Inventory"
+                href="/inventory"
                 className="text-lg text-[#1badbe] hover:text-white transition-colors duration-300 ease-in-out"
                 >Inventory
             </Link>
             <Link
-                href="/Products"
+                href="/products"
                 className="text-lg text-[#1badbe] hover:text-white transition-colors duration-300 ease-in-out"
                 >Products
             </Link>
