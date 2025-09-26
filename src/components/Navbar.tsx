@@ -105,7 +105,7 @@ export default function Navbar() {
                                 <Link
                                     href={page.slug === "home" ? "/" : `/${page.slug}`}
                                     className={`flex items-center gap-2 text-2xl ${
-                                        isActiveParent ? "text-blue-900" : "hover:text-[#1565c0]"
+                                        isActiveParent ? "text-blue-900 outline-3 outline-offset-1 bg-white/10 border-black p-2 rounded-4xl" : "hover:text-[#1565c0]"
                                     }`}
                                 >
                                     {page.title}

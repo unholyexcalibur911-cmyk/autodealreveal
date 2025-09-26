@@ -1,6 +1,7 @@
 import ColumnItemSection from "@/components/ColumnItemSections";
 import TextSectionCenterSM from "@/components/TextSectionLeft"
 import TextSectionLeft from "@/components/TextSectionCenter";
+import ImageCarousel from "@/components/ImageCarousel";
 import TextSection from "@/components/TextSections";
 import ItemSection from "@/components/ItemSection";
 import Section2 from "@/components/Section2";
@@ -126,6 +127,14 @@ export default async function Page({ params }:
                       section.background ? { url: section.background.url } : undefined
                     }
                     column_item_content={section.column_item_content || []}
+                  />
+                );
+              case "sections.image-carousel": // <-- Carousel / Not sure if working
+                return (
+                  <ImageCarousel
+                    key={index}
+                    title={section.title}
+                    images={section.images || []}
                   />
                 );
           default:

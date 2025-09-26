@@ -33,7 +33,7 @@ export default function Section2({
       {background?.url && (
         <Image
           src={background.url}
-           alt={title ?? "Background image"} 
+          alt={title ?? "Background image"} 
           fill
           priority
           className="object-cover brightness-60 -z-10"

@@ -130,7 +130,7 @@ export default async function Home() {
                 column_item_content={section.column_item_content || []}
               />
             );
-          case "sections.image-carousel":
+          case "sections.image-carousel": // <-- Carousel / Not sure if working
             return (
               <ImageCarousel
                 key={index}
