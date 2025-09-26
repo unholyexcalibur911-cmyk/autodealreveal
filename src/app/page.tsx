@@ -37,8 +37,10 @@ export default async function Home() {
                 background={
                   section.background ? { url: section.background.url } : undefined
                 }
-                buttonText={section.ButtonText}
-                buttonURL={section.ButtonURL}
+                buttonText={section.buttonText}
+                buttonURL={section.buttonURL}
+                buttonText_2={section.buttonText_2}
+                buttonURL_2={section.buttonURL_2}
               />
             );
           case "sections.section1":
@@ -52,10 +54,10 @@ export default async function Home() {
                   section.background ? { url: section.background.url } : undefined
                 }
                 image={section.image ? { url: section.image.url } : undefined}
-                buttonText={section.button_text}
-                buttonURL={section.button_url}
-                buttonText2={section.button_text_2}
-                buttonURL2={section.button_url_2}
+                buttonText={section.buttonText}
+                buttonURL={section.buttonURL}
+                buttonText2={section.buttonText_2}
+                buttonURL2={section.buttonURL_2}
               />
             );
           case "sections.section2":
@@ -69,10 +71,10 @@ export default async function Home() {
                   section.background ? { url: section.background.url } : undefined
                 }
                 image={section.image ? { url: section.image.url } : undefined}
-                buttonText={section.button_text}
-                buttonURL={section.button_url}
-                buttonText2={section.button_text_2}
-                buttonURL2={section.button_url_2}
+                buttonText={section.buttonText}
+                buttonURL={section.buttonURL}
+                buttonText2={section.buttonText_2}
+                buttonURL2={section.buttonURL_2}
               />
             );
           case "sections.item-section":

@@ -57,7 +57,7 @@ export default function Section1({
             {buttonText && buttonURL && (
               <a
                 href={buttonURL}
-                className="inline-block bg-black text-white px-10 py-4 rounded-xl font-bold hover:text-black hover:bg-[#36a9b6] transition-colors duration-400 "
+                className="inline-block bg-black text-white px-12 py-4 rounded-2xl font-bold hover:text-black hover:bg-red-700 transition-colors duration-400 shadow-xl/40 md:text-lg"
               >
                 {buttonText}
               </a>
@@ -66,7 +66,7 @@ export default function Section1({
             {buttonText2 && buttonURL2 && (
               <a
                 href={buttonURL2}
-                className="inline-block bg-[#48bdcb] text-black px-10 py-4 rounded-xl font-bold hover:bg-[#89e9f5] transition-colors duration-300 "
+                className="inline-block bg-white text-black px-12 py-4 rounded-2xl font-bold hover:bg-indigo-950 hover:text-white transition-colors duration-400 shadow-xl/40 md:text-lg border border-black "
               >
                 {buttonText2}
               </a>

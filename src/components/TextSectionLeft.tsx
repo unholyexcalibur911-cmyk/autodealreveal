@@ -12,7 +12,7 @@ interface TextSectionProps {
 export default function TextSection({ title, content, background }: TextSectionProps) {
 
   const formattedContent = content ? content.replace(/\n/g, "<br />") : "";
-  const testVideo = "/MovingBg.mp4";
+    const testVideo = "/MovingBg.mp4";
     const testPoster = "/testBackground.jpg";
     const videoRef = React.useRef<HTMLVideoElement>(null);
 

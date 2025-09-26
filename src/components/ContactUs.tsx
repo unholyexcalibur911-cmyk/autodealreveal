@@ -18,7 +18,7 @@ const ContactUs: React.FC = () => {
     return (
         <>
             <button
-                className="fixed bottom-8 right-8 z-50 bg-[#2b2d42] text-white px-6 py-3 rounded-full shadow-lg hover:bg-[#1a1b2e] transition-all"
+                className="fixed bottom-8 right-8 z-50 bg-[#2b2d42] text-white px-6 py-3 rounded-full shadow-lg hover:bg-red-600 hover:font-bold hover:text-black transition-all"
                 onClick={() => setOpen(true)}
             >
                 Contact Us

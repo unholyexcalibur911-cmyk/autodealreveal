@@ -8,6 +8,8 @@ interface HeroProps {
   background?: { url: string };
   buttonText?: string;
   buttonURL?: string;
+  buttonText_2?: string;
+  buttonURL_2?: string;
 }
 
 export default function Hero({
@@ -16,6 +18,8 @@ export default function Hero({
   background,
   buttonText,
   buttonURL,
+  buttonText_2,
+  buttonURL_2,
 }: HeroProps) {
   return (
     <section className="relative h-screen w-full text-stone-300">
@@ -39,14 +43,24 @@ export default function Hero({
           <p className="text-lg md:text-2xl mb-6 text-shadow-xl max-w-4xl mx-auto">{subtitle}</p>
         )}
 
-        {buttonText && buttonURL && (
-          <a
-            href={buttonURL}
-            className="inline-block bg-black text-white px-12 py-4 rounded-xl font-bold hover:text-black hover:bg-[#36a9b6] transition-colors duration-400 shadow-xl/40 md:text-lg"
-          >
-            {buttonText}
-          </a>
-        )}
+        <div className="flex flex-col md:flex-row gap-4 justify-center items-center mt-6">
+          {buttonText && buttonURL && (
+            <a
+              href={buttonURL}
+              className="inline-block bg-black text-white px-12 py-4 rounded-2xl font-bold hover:text-black hover:bg-red-700 transition-colors duration-400 shadow-xl/40 md:text-lg"
+            >
+              {buttonText}
+            </a>
+          )}
+          {buttonText_2 && buttonURL_2 && (
+            <a
+              href={buttonURL_2}
+              className="inline-block bg-white text-black px-12 py-4 rounded-2xl font-bold hover:bg-indigo-950 hover:text-white transition-colors duration-400 shadow-xl/40 md:text-lg border border-black"
+            >
+              {buttonText_2}
+            </a>
+          )}
+        </div>
       </div>
     </section>
   );

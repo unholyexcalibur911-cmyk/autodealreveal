@@ -1,6 +1,6 @@
 import ColumnItemSection from "@/components/ColumnItemSections";
-import TextSectionCenterSM from "@/components/TextSectionLeft"
-import TextSectionLeft from "@/components/TextSectionCenter";
+import TextSectionLeft from "@/components/TextSectionLeft";
+import TextSectionCenter from "@/components/TextSectionCenter";
 import ImageCarousel from "@/components/ImageCarousel";
 import TextSection from "@/components/TextSections";
 import ItemSection from "@/components/ItemSection";
@@ -14,7 +14,7 @@ export default async function Page({ params }:
 
     const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
     const res = await fetch(
-      `${baseUrl}/api/pages?filters[slug]=${slug}&populate[Sections][populate]=*`,
+      `${baseUrl}/api/pages?filters[slug][$eq]=${slug}&populate[Sections][populate]=*`,
       { cache: "no-store" }
     );
 
@@ -25,7 +25,7 @@ export default async function Page({ params }:
 
   return (
     <main>
-      {page.sections?.map((section: any, index: number) => {
+      {page.Sections?.map((section: any, index: number) => {
         switch (section.__component) {
           case "sections.hero":
             return (
@@ -36,44 +36,46 @@ export default async function Page({ params }:
                 background={
                   section.background ? { url: section.background.url } : undefined
                 }
-                buttonText={section.ButtonText}
-                buttonURL={section.ButtonURL}
+                buttonText={section.buttonText}
+                buttonURL={section.buttonURL}
+                buttonText_2={section.buttonText_2}
+                buttonURL_2={section.buttonURL_2}
               />
-              );
-            case "sections.section1":
-              return (
-                <Section1
-                  key={index}
-                  title={section.title}
-                  subtitle={section.subtitle}
-                  content={section.content}
-                  background={
-                    section.background ? { url: section.background.url } : undefined
-                  }
-                  image={section.image ? { url: section.image.url } : undefined}
-                  buttonText={section.button_text}
-                  buttonURL={section.button_url}
-                  buttonText2={section.button_text_2}
-                  buttonURL2={section.button_url_2}
-                />
-              );
-            case "sections.section2":
-              return (
-                <Section2
-                  key={index}
-                  title={section.title}
-                  subtitle={section.subtitle}
-                  content={section.content}
-                  background={
-                    section.background ? { url: section.background.url } : undefined
-                  }
-                  image={section.image ? { url: section.image.url } : undefined}
-                  buttonText={section.button_text}
-                  buttonURL={section.button_url}
-                  buttonText2={section.button_text_2}
-                  buttonURL2={section.button_url_2}
-                />
-                );
+            );
+          case "sections.section1":
+            return (
+              <Section1
+                key={index}
+                title={section.title}
+                subtitle={section.subtitle}
+                content={section.content}
+                background={
+                  section.background ? { url: section.background.url } : undefined
+                }
+                image={section.image ? { url: section.image.url } : undefined}
+                buttonText={section.buttonText}
+                buttonURL={section.buttonURL}
+                buttonText2={section.buttonText_2}
+                buttonURL2={section.buttonURL_2}
+              />
+            );
+          case "sections.section2":
+            return (
+              <Section2
+                key={index}
+                title={section.title}
+                subtitle={section.subtitle}
+                content={section.content}
+                background={
+                  section.background ? { url: section.background.url } : undefined
+                }
+                image={section.image ? { url: section.image.url } : undefined}
+                buttonText={section.buttonText}
+                buttonURL={section.buttonURL}
+                buttonText2={section.buttonText_2}
+                buttonURL2={section.buttonURL_2}
+              />
+            );
               case "sections.item-section":
                 return (
                   <ItemSection
@@ -109,7 +111,7 @@ export default async function Page({ params }:
                 );
               case "sections.text-center":
                 return (
-                  <TextSectionCenterSM
+                  <TextSectionCenter
                     key={index}
                     title={section.title}
                     content={section.content}

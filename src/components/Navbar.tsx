@@ -49,13 +49,13 @@ export default function Navbar() {
         async function fetchPages() {
             try {
                 const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
-                const pageRes = await fetch(`${baseUrl}/api/pages?populate[Sections][populate]=*`);
+                const pageRes = await fetch(`${baseUrl}/api/pages`);
                 const pageData = await pageRes.json();
-                const childRes = await fetch(`${baseUrl}/api/childpages?populate[page]=true&populate[sections][populate]=*`);
+                const childRes = await fetch(`${baseUrl}/api/childpages?populate=page`);
                 const childData = await childRes.json();
-                const order = ["home", "about", "inventory", "products"];
+                const order = ["home", "about-us", "inventory", "products"];
                 const sortedPages = [...pageData.data || []].sort (
-                    (b: Page, a: Page) => order.indexOf(b.slug) - order.indexOf(a.slug)
+                    (a: Page, b: Page) => order.indexOf(a.slug) - order.indexOf(b.slug)
                 );
                 setPages(sortedPages);
                 setChildPages(childData.data || []);
@@ -73,7 +73,7 @@ export default function Navbar() {
     const getChildren = (pageId: number) => childPages.filter((child) => child.page?.id === pageId);
 
     return (
-        <nav className={`sticky top-0 z-50 opacity-100 text-red-600 md:pr-15 px-6 py-8 lg:pr-20 whitespace-nowrap transition-all duration-300 ${isScrolled ? 'bg-stone-200 py-10' : 'bg-transparent'}`}> 
+        <nav className={`sticky top-0 z-50 opacity-100 md:pr-15 px-6 py-8 lg:pr-20 whitespace-nowrap transition-all duration-300 ${isScrolled ? 'bg-stone-200 py-10 text-red-600' : 'bg-black/50 text-red-600'}`}> 
             <div className="flex justify-between items-center">
                 {/* Logo or Brand Name */}
                 <Link href="/" className="flex items-left pl-4">
