@@ -20,7 +20,7 @@ export default function TextSection({ title, content, background }: TextSectionP
             fill
             quality={100}
             priority
-            className="object-cover brightness-50 -z-10"
+            className="object-cover brightness-50 -z-10 opacity-50"
           />
         )}
 

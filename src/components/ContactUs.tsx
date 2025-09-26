@@ -14,19 +14,26 @@ export default function ContactUs() {
                 Contact Us
             </button>
             {open && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 bg-opacity-50">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90">
                     <div className="relative bg-[#2b2d42] w-full max-w-2xl px-8 py-10 rounded-lg shadow-xl text-center">
                         <button
                             className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl"
                             onClick={() => setOpen(false)}
                             aria-label="Close"
                         >
-                            &times;
+                            <span aria-hidden="true">×</span>
+                            <span className="sr-only">Close</span>
                         </button>
                         <h1 className="text-4xl text-gray-300 mb-2">Contact Us</h1>
                         <div className="w-12 h-0.5 bg-gray-600 mx-auto mb-6"></div>
                         <p className="text-lg text-gray-200 mb-8">Drop us a line!</p>
-                        <form className="space-y-6">
+                        <form
+                            className="space-y-6"
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                // Handle form data here
+                            }}
+                        >
                             <input
                                 type="text"
                                 placeholder="Name"
