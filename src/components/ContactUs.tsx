@@ -23,7 +23,7 @@ export default function ContactUs() {
                         >
                             &times;
                         </button>
-                        <h1 className="text-4xl font-serif text-gray-300 mb-2">Contact Us</h1>
+                        <h1 className="text-4xl text-gray-300 mb-2">Contact Us</h1>
                         <div className="w-12 h-0.5 bg-gray-600 mx-auto mb-6"></div>
                         <p className="text-lg text-gray-200 mb-8">Drop us a line!</p>
                         <form className="space-y-6">
