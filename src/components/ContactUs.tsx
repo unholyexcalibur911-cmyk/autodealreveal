@@ -18,10 +18,16 @@ const ContactUs: React.FC = () => {
     return (
         <>
             <button
-                className="fixed bottom-8 right-8 z-50 bg-[#2b2d42] text-white px-6 py-3 rounded-full shadow-lg hover:bg-red-600 hover:font-bold hover:text-black transition-all"
+                className="fixed bottom-8 right-8 z-50 bg-[#3a3a42] border text-white flex items-center gap-2 px-4 py-3 rounded-full shadow-lg hover:bg-red-600 hover:font-bold hover:text-black transition-all group"
                 onClick={() => setOpen(true)}
+                aria-label="Contact Us"
             >
-                Contact Us
+                {/* Phone Icon SVG from /ContactUs.svg */}
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-8">
+                    <path d="M3.51089 2L7.15002 2.13169C7.91653 2.15942 8.59676 2.64346 8.89053 3.3702L9.96656 6.03213C10.217 6.65159 10.1496 7.35837 9.78693 7.91634L8.40831 10.0375C9.22454 11.2096 11.4447 13.9558 13.7955 15.5633L15.5484 14.4845C15.9939 14.2103 16.5273 14.1289 17.0314 14.2581L20.5161 15.1517C21.4429 15.3894 22.0674 16.2782 21.9942 17.2552L21.7705 20.2385C21.6919 21.2854 20.8351 22.1069 19.818 21.9887C6.39245 20.4276 -1.48056 1.99997 3.51089 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                {/* Contact Us text only on hover */}
+                <span className="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:pl-2 transition-all duration-300 ease-in-out whitespace-nowrap">Contact Us</span>
             </button>
             {open && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90">

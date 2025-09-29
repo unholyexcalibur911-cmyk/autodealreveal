@@ -22,7 +22,7 @@ export default function Hero({
   buttonURL_2,
 }: HeroProps) {
   return (
-    <section className="relative h-screen w-full text-stone-300">
+    <section className="relative h-screen w-full text-stone-100">
       {/* Background Image */}
       {background?.url && (
         <Image

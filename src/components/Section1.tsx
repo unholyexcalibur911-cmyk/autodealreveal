@@ -29,7 +29,7 @@ export default function Section1({
   const formattedContent = content ? content.replace(/\n/g, "<br />") : "";
 
   return (
-    <section className="relative py-16 2xl:py-42 text-stone-200 ">
+    <section className="relative py-16 2xl:py-42 text-stone-100 ">
       {background?.url && (
         <Image
           src={background.url}

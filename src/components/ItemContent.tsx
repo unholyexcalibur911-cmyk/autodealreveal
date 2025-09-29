@@ -22,7 +22,7 @@ export default function ItemContent({
 }: ItemContentProps) {
   return (
     <div
-      className="relative p-6 rounded-2xl text-stone-100 w-full flex flex-col justify-between bg-black shadow-xl/40"
+      className="relative p-6 rounded-2xl text-gray-800 w-full flex flex-col justify-between bg-stone-100 shadow-xl/40"
       style={{
         backgroundImage: background?.url ? `url(${background.url})` : undefined,
         backgroundSize: "cover",
@@ -60,7 +60,7 @@ export default function ItemContent({
         <div className="relative z-10 text-center mt-4">
           <a
             href={buttonURL}
-              className="inline-block bg-red-800 text-black px-8 py-3 rounded-xl font-bold hover:bg-indigo-700 transition-colors duration-300 shadow-xl/40"
+              className="inline-block bg-[#2b2d42] text-neutral-100 px-8 py-3 rounded-xl font-bold hover:text-white hover:bg-rose-600 transition-colors duration-300 shadow-xl/40"
           >
             {buttonText}
           </a>

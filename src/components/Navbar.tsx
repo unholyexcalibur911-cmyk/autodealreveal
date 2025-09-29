@@ -22,28 +22,13 @@ interface ChildPage {
 }
 
 export default function Navbar() {
-    const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
-    const [mounted, setMounted] = useState(false);
     const [pages, setPages] = useState<Page[]>([]);
     const [childPages, setChildPages] = useState<ChildPage[]>([]); 
     const [openPageId, setOpenPageId] = useState<number | null>(null);
     const [mobileOpenPageId, setMobileOpenPageId] = useState<number | null>(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     
-
-    useEffect(() => {
-        setMounted(true);
-        const handleScroll = () => {
-            if (window.scrollY > 250) {
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
-            }
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
     useEffect(() => {
         async function fetchPages() {
@@ -66,28 +51,24 @@ export default function Navbar() {
         fetchPages();
     }, []);
 
-    if (!mounted) {
-        return null;
-    }
-
     const getChildren = (pageId: number) => childPages.filter((child) => child.page?.id === pageId);
 
     return (
-        <nav className={`sticky top-0 z-50 opacity-100 md:pr-15 px-6 py-8 lg:pr-20 whitespace-nowrap transition-all duration-300 ${isScrolled ? 'bg-stone-200 py-10 text-red-600' : 'bg-black/50 text-red-600'}`}> 
+        <nav className={`sticky top-0 z-50 opacity-100 md:pr-15 pl-6 py-4 lg:pr-20 whitespace-nowrap transition-all duration-300 bg-stone-200 text-red-600`}> 
             <div className="flex justify-between items-center">
                 {/* Logo or Brand Name */}
-                <Link href="/" className="flex items-left pl-4">
+                <Link href="/" className="flex justify-start pl-6">
                     <Image
                         src="/logo.png"
                         alt="Auto Deal Reveal Logo"
                         width={400}
                         height={80}
-                        className="h-15 w-auto lg:block pr-5"
+                        className="h-15 w-auto lg:block pr-5 fixed relative"
                         priority
                     />
                 </Link> 
                 {/* Desktop Menu */}
-                <div className="hidden md:flex gap-30 justify-center items-center flex-1">
+                <div className="hidden md:flex gap-10 justify-end items-center flex-1 text-left pr-40">
                     {pages.map((page) => {
                         const children = getChildren(page.id);
                         const isActiveParent =
@@ -104,8 +85,8 @@ export default function Navbar() {
                             >
                                 <Link
                                     href={page.slug === "home" ? "/" : `/${page.slug}`}
-                                    className={`flex items-center gap-2 text-2xl ${
-                                        isActiveParent ? "text-blue-900 outline-3 outline-offset-1 bg-white/10 border-black p-2 rounded-4xl" : "hover:text-[#1565c0]"
+                                    className={`flex items-center gap-2 text-xl ${
+                                        isActiveParent ? "text-blue-900 outline-3 outline-offset-1 bg-white/10 p-2" : "hover:text-[#1565c0]"
                                     }`}
                                 >
                                     {page.title}
@@ -113,15 +94,15 @@ export default function Navbar() {
                                 </Link>
 
                                 {children.length > 0 && openPageId === page.id && (
-                                    <div className="absolute left-0 bg-stone-300 text-red-600 rounded z-50 w-64">
+                                    <div className="absolute -left-20 bg-stone-300 text-red-600 rounded z-50 w-64">
                                         {children.map((child) => {
                                             const isActiveChild = pathname === `/${page.slug}/${child.slug}`;
                                             return (
                                                 <Link
                                                     key={child.id}
                                                     href={`/${page.slug}/${child.slug}`}
-                                                    className={`block px-4 py-2 hover:bg-blue-200 ${
-                                                        isActiveChild ? "font-bold bg-[#1565c0]" : ""
+                                                    className={`block px-4 py-2 hover:bg-[#b1b1b1] ${
+                                                        isActiveChild ? "font-bold bg-[#a1a1aa]" : ""
                                                     }`}
                                                 >
                                                     {child.title}
@@ -136,16 +117,16 @@ export default function Navbar() {
                 </div>
                 {/* Mobile Menu Button */}
                 <button
-                className="md:hidden text-white hover:text-[#48bdcb]"
+                className="md:hidden text-[#2b2d42] px-6 hover:text-[#48bdcb]"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
-                    {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                    {mobileMenuOpen ? <X size={28} /> : <Menu size={24} />}
                 </button>
                 </div>
 
                 {/* Mobile Menu */}
                     {mobileMenuOpen && (
-                    <div className="md:hidden mt-2 bg-stone-100 rounded-lg shadow-lg">
+                    <div className="absolute right-2 items-right justify-end md:hidden mt-2 bg-stone-100 rounded-lg shadow-lg">
                     {pages.map((page) => {
                     const children = getChildren(page.id);
                     const isOpen = mobileOpenPageId === page.id;

@@ -36,9 +36,9 @@ export default function Footer() {
                     const pageData = await pageRes.json();
                     const childRes = await fetch(`${baseUrl}/api/childpages?populate[page]=true&populate[sections][populate]=*`);
                     const childData = await childRes.json();
-                    const order = ["home", "about", "inventory", "products"];
+                    const order = ["home", "about-us", "inventory", "products"];
                     const sortedPages = [...pageData.data || []].sort (
-                        (b: Page, a: Page) => order.indexOf(b.slug) - order.indexOf(a.slug)
+                        (a: Page, b: Page) => order.indexOf(a.slug) - order.indexOf(b.slug)
                     );
                     setPages(sortedPages);
                     setChildPages(childData.data || []);
@@ -133,14 +133,14 @@ export default function Footer() {
                                 </Link>
 
                                 {children.length > 0 && openPageId === page.id && (
-                                    <div className="absolute left-0 bg-blue-200 text-stone-200 rounded z-50 w-64">
+                                    <div className="absolute left-0 bg-[#2b2f56] text-stone-200 rounded z-50 w-64">
                                         {children.map((child) => {
                                             const isActiveChild = pathname === `/${page.slug}/${child.slug}`;
                                             return (
                                                 <Link
                                                     key={child.id}
                                                     href={`/${page.slug}/${child.slug}`}
-                                                    className={`block px-4 py-2 hover:bg-blue-300 ${
+                                                    className={`block px-4 py-2 hover:bg-[#2f3780] ${
                                                         isActiveChild ? "font-bold bg-[#1565c0]" : ""
                                                     }`}
                                                 >
