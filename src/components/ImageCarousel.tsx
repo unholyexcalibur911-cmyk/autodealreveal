@@ -23,7 +23,7 @@ export default function ImageCarousel({ images, title }: ImageCarouselProps) {
                                 width={300}
                                 height={300}
                                 className="object-cover"
-                            />
+                            /> 
                         </div>
                     ))}
                 </div>
