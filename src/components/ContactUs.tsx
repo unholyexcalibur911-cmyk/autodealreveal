@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
 const ContactUs: React.FC = () => {
     const [open, setOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -15,10 +16,14 @@ const ContactUs: React.FC = () => {
     const [sent, setSent] = useState(false);
     const [error, setError] = useState("");
 
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     return (
         <>
             <button
-                className="fixed bottom-8 right-8 z-50 bg-[#3a3a42] border text-white flex items-center gap-2 px-4 py-3 rounded-full shadow-lg hover:bg-red-600 hover:font-bold hover:text-black transition-all group"
+                className="fixed bottom-8 right-8 z-50 bg-[#115596] border text-white flex items-center gap-2 px-4 py-3 rounded-full shadow-lg hover:bg-red-600 hover:font-bold hover:text-black transition-all group"
                 onClick={() => setOpen(true)}
                 aria-label="Contact Us"
             >
@@ -29,7 +34,7 @@ const ContactUs: React.FC = () => {
                 {/* Contact Us text only on hover */}
                 <span className="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:pl-2 transition-all duration-300 ease-in-out whitespace-nowrap">Contact Us</span>
             </button>
-            {open && (
+            {mounted && open && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90">
                     <div className="relative bg-[#2b2d42] w-full max-w-2xl px-8 py-10 rounded-lg shadow-xl text-center">
                         <button

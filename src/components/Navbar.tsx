@@ -29,7 +29,6 @@ export default function Navbar() {
     const [mobileOpenPageId, setMobileOpenPageId] = useState<number | null>(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     
-
     useEffect(() => {
         async function fetchPages() {
             try {
@@ -54,7 +53,7 @@ export default function Navbar() {
     const getChildren = (pageId: number) => childPages.filter((child) => child.page?.id === pageId);
 
     return (
-        <nav className={`sticky top-0 z-50 opacity-100 md:pr-15 pl-6 py-4 lg:pr-20 whitespace-nowrap transition-all duration-300 bg-stone-200 text-red-600`}> 
+        <nav className="sticky top-0 z-50 opacity-100 md:pr-15 pl-6 py-4 lg:pr-20 whitespace-nowrap transition-all duration-300 bg-stone-200 text-red-600">
             <div className="flex justify-between items-center">
                 {/* Logo or Brand Name */}
                 <Link href="/" className="flex justify-start pl-6">
@@ -66,10 +65,10 @@ export default function Navbar() {
                         className="h-15 w-auto lg:block pr-5 fixed relative"
                         priority
                     />
-                </Link> 
+                </Link>
                 {/* Desktop Menu */}
-                <div className="hidden md:flex gap-10 justify-end items-center flex-1 text-left pr-40">
-                    {pages.map((page) => {
+                <div className="hidden md:flex gap-10 pr-25 justify-end items-center flex-1 text-left">
+                    {pages.length === 0 ? null : pages.map((page) => {
                         const children = getChildren(page.id);
                         const isActiveParent =
                             pathname === `/${page.slug}` ||
@@ -86,7 +85,7 @@ export default function Navbar() {
                                 <Link
                                     href={page.slug === "home" ? "/" : `/${page.slug}`}
                                     className={`flex items-center gap-2 text-xl ${
-                                        isActiveParent ? "text-blue-900 outline-3 outline-offset-1 bg-white/10 p-2" : "hover:text-[#1565c0]"
+                                        isActiveParent ? "text-blue-900 outline-3 outline-offset-1 bg-white/10 p-2" : "hover:text-[#084d8c]"
                                     }`}
                                 >
                                     {page.title}
@@ -101,7 +100,7 @@ export default function Navbar() {
                                                 <Link
                                                     key={child.id}
                                                     href={`/${page.slug}/${child.slug}`}
-                                                    className={`block px-4 py-2 hover:bg-[#b1b1b1] ${
+                                                    className={`block px-4 py-2 hover:bg-[#b1b1b1] hover:text-[#084d8c] ${
                                                         isActiveChild ? "font-bold bg-[#a1a1aa]" : ""
                                                     }`}
                                                 >
@@ -123,49 +122,48 @@ export default function Navbar() {
                     {mobileMenuOpen ? <X size={28} /> : <Menu size={24} />}
                 </button>
                 </div>
-
                 {/* Mobile Menu */}
-                    {mobileMenuOpen && (
+                {mobileMenuOpen && (
                     <div className="absolute right-2 items-right justify-end md:hidden mt-2 bg-stone-100 rounded-lg shadow-lg">
-                    {pages.map((page) => {
-                    const children = getChildren(page.id);
-                    const isOpen = mobileOpenPageId === page.id;
-                    const isActiveParent =
-                        pathname === `/${page.slug}` ||
-                        pathname.startsWith(`/${page.slug}/`) ||
-                        (page.slug === "home" && pathname === "/");
+                        {pages.length === 0 ? null : pages.map((page) => {
+                            const children = getChildren(page.id);
+                            const isOpen = mobileOpenPageId === page.id;
+                            const isActiveParent =
+                                pathname === `/${page.slug}` ||
+                                pathname.startsWith(`/${page.slug}/`) ||
+                                (page.slug === "home" && pathname === "/");
 
-                return (
-                    <div key={page.id} className="border-b border-gray-800">
-                        <div className="flex justify-between items-center px-4 py-3 text-lg">
-                            <Link
-                                href={`/${page.slug === "home" ? "" : page.slug}`}
-                                className={`${isActiveParent ? "text-[#3c3b6e]" : "hover:text-[#1565c0]"}`}
-                            >
-                            {page.title}
-                            </Link>
-                                {children.length > 0 && (
-                                <button onClick={() => setMobileOpenPageId(isOpen ? null : page.id)}>
-                            <ChevronDown
-                                size={16}
-                                className={`${isOpen ? "rotate-180" : ""} transition-transform`}
-                            />
-                        </button>
-                    )}
-                </div>
+                        return (
+                            <div key={page.id} className="border-b border-gray-800">
+                                <div className="flex justify-between items-center px-4 py-3 text-lg">
+                                    <Link
+                                        href={`/${page.slug === "home" ? "" : page.slug}`}
+                                        className={`${isActiveParent ? "text-[#3c3b6e]" : "hover:text-[#1565c0]"}`}
+                                    >
+                                    {page.title}
+                                    </Link>
+                                        {children.length > 0 && (
+                                        <button onClick={() => setMobileOpenPageId(isOpen ? null : page.id)}>
+                                <ChevronDown
+                                    size={16}
+                                    className={`${isOpen ? "rotate-180" : ""} transition-transform`}
+                                />
+                            </button>
+                        )}
+                    </div>
 
-                {children.length > 0 && isOpen && (
-                    <div className="pl-6 pb-2">
-                        {children.map((child) => {
-                            const isActiveChild = pathname === `/${page.slug}/${child.slug}`;
-                            return (
-                                <Link
-                                    key={child.id}
-                                    href={`/${page.slug}/${child.slug}`}
-                                    className={`block py-2 ${
-                                        isActiveChild ? "text-[#48bdcb]" : "hover:text-[#48bdcb]"
-                                    }`}
-                                >
+                    {children.length > 0 && isOpen && (
+                        <div className="pl-6 pb-2">
+                            {children.map((child) => {
+                                const isActiveChild = pathname === `/${page.slug}/${child.slug}`;
+                                return (
+                                    <Link
+                                        key={child.id}
+                                        href={`/${page.slug}/${child.slug}`}
+                                        className={`block py-2 ${
+                                            isActiveChild ? "text-[#48bdcb]" : "hover:text-[#48bdcb]"
+                                        }`}
+                                    >
                             {child.title}
                             </Link>
                             );

@@ -47,7 +47,7 @@ export default function Hero({
           {buttonText && buttonURL && (
             <a
               href={buttonURL}
-              className="inline-block bg-black text-white px-12 py-4 rounded-2xl font-bold hover:text-black hover:bg-red-700 transition-colors duration-400 shadow-xl/40 md:text-lg"
+              className="inline-block bg-[#084d8c]/60 text-stone-300 px-12 py-4 rounded-2xl font-bold hover:text-white hover:bg-[#084d8c] transition-colors duration-400 hover:-translate-y-1 ease-in-out shadow-xl/40 md:text-lg border-3 border-[#084d8c]"
             >
               {buttonText}
             </a>
@@ -55,7 +55,7 @@ export default function Hero({
           {buttonText_2 && buttonURL_2 && (
             <a
               href={buttonURL_2}
-              className="inline-block bg-white text-black px-12 py-4 rounded-2xl font-bold hover:bg-indigo-950 hover:text-white transition-colors duration-400 shadow-xl/40 md:text-lg border border-black"
+              className="inline-block bg-[#084d8c]/60 text-stone-300 px-12 py-4 rounded-2xl font-bold hover:bg-[#084d8c] hover:text-white transition-colors duration-400 shadow-xl/40 md:text-lg border-3 border-[#084d8c]"
             >
               {buttonText_2}
             </a>
