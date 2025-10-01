@@ -67,38 +67,7 @@ export default function Footer() {
 
                             {/* Social Icons */}
                             <div className="flex justify-center md:justify-start gap-4 mt-4 text-3xl">
-                                <Link
-                                    href="https://facebook.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:text-[#115596] transition-colors"
-                                >
-                                <FaFacebookSquare />
-                                </Link>
-                                <Link
-                                    href="https://instagram.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:text-[#115596] transition-colors"
-                                >
-                                <FaInstagramSquare />
-                                </Link>
-                                <Link
-                                    href="https://linkedin.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:text-[#115596] transition-colors"
-                                >
-                                <FaLinkedin />
-                                </Link>
-                                <Link
-                                    href="https://twitter.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:text-[#115596] transition-colors"
-                                >
-                                <FaTwitterSquare />
-                            </Link>
+                                {/* Social media items */}
                             </div>
 
                             <button className="bg-[#115596] hover:bg-[#cd2b29] px-8 py-4 font-bold mt-6 hover:text-white transition-colors duration-300 ease-in-out">

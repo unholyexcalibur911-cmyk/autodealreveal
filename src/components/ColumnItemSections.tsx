@@ -6,7 +6,7 @@ interface ColumnItem {
   id: number;
   title: string;
   short_description: string;
-   URL: string; 
+  URL: string; 
   image?: {
     url: string;
     alternativeText?: string;

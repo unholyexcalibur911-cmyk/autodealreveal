@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { ChevronDown, Menu, X } from "lucide-react";
+import Support from "./Support";
 
 interface Page {
     id: number;
@@ -85,7 +86,7 @@ export default function Navbar() {
                                 <Link
                                     href={page.slug === "home" ? "/" : `/${page.slug}`}
                                     className={`flex items-center gap-2 text-xl ${
-                                        isActiveParent ? "text-blue-900 outline-3 outline-offset-1 bg-white/10 p-2" : "hover:text-[#084d8c]"
+                                        isActiveParent ? "text-blue-900 bg-white/10 p-2" : "hover:text-[#084d8c]"
                                     }`}
                                 >
                                     {page.title}
@@ -113,6 +114,8 @@ export default function Navbar() {
                             </div>
                         );
                     })}
+                    {/* Support Button */}
+                    <Support />
                 </div>
                 {/* Mobile Menu Button */}
                 <button
@@ -121,7 +124,7 @@ export default function Navbar() {
                 >
                     {mobileMenuOpen ? <X size={28} /> : <Menu size={24} />}
                 </button>
-                </div>
+            </div>
                 {/* Mobile Menu */}
                 {mobileMenuOpen && (
                     <div className="absolute right-2 items-right justify-end md:hidden mt-2 bg-stone-100 rounded-lg shadow-lg">

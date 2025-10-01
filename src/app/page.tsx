@@ -1,9 +1,10 @@
 import ColumnItemSection from "@/components/ColumnItemSections";
 import TextSectionCenter from "@/components/TextSectionLeft";
 import TextSectionLeft from "@/components/TextSectionCenter";
-import ImageCarousel from "@/components/ImageCarousel";
 import TextSection from "@/components/TextSections";
 import ItemSection from "@/components/ItemSection";
+import Testimonial from "@/components/Testimonial";
+import Background from "@/components/DefaultBackground";
 import Section2 from "@/components/Section2";
 import Section1 from "@/components/Section1";
 import Hero from "@/components/Hero";
@@ -132,14 +133,18 @@ export default async function Home() {
                 column_item_content={section.column_item_content || []}
               />
             );
-          case "sections.image-carousel": // <-- Carousel / Not sure if working
-            return (
-              <ImageCarousel
-                key={index}
-                title={section.title}
-                images={section.images || []}
-              />
-            );
+            case "sections.testimonial":
+              return (
+                <div style={{ position: 'relative' }} key={index}>
+                  {!section.background && <Background />}
+                  <Testimonial
+                    name={section.name}
+                    role={section.role}
+                    quote={section.quote || []}
+                    image={section.image ? { url: section.image.url } : undefined}
+                  />
+                </div>
+              );
           default:
             return null;
         }
