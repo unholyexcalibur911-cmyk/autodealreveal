@@ -9,16 +9,7 @@ export default function DefaultBackground() {
             muted
             playsInline
             src="/MovingBg.mp4"
-            style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                zIndex: -1,
-                opacity: 0.7,
-            }}
+            className="absolute inset-0 w-full h-full object-cover -z-10 opacity-2"
         />
     );
 }

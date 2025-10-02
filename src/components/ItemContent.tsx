@@ -30,10 +30,9 @@ export default function ItemContent({
       }}
     >
       {/* Content */}
-      <div className="relative z-10 min-h-[200px] flex flex-col justify-center">
-
-         {/* Title */}
-        <h3 className="text-3xl font-bold mb-2 text-center pb-4">{title}</h3>
+      <div className="relative z-10 min-h-[400px] flex flex-col justify-start">
+        {/* Title at the top */}
+        <h3 className="text-2xl font-bold mb-6 text-center pt-2">{title}</h3>
 
         {/* Icon */}
         {icon?.url && (
@@ -50,7 +49,7 @@ export default function ItemContent({
 
         {/* Description */}
         <div
-          className="richtext text-sm mb-4 text-center"
+          className="richtext text-justify justify-center text-sm mb-4 "
           dangerouslySetInnerHTML={{ __html: description }}
         />
       </div>

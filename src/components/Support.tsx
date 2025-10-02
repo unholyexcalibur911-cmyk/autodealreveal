@@ -133,7 +133,7 @@ const Support: React.FC = () => {
 										id="issue"
 										value={form.issue}
 										onChange={e => setForm(f => ({ ...f, issue: e.target.value }))}
-										className="w-full border-b-2 border-white bg-transparent px-4 pt-6 pb-3 focus:outline-none focus:border-blue-600"
+										className="w-full border-b-2 border-white bg-transparent px-4 pt-6 pb-3 focus:bg-[#~2b2d42] focus:outline-none focus:border-blue-600"
 									>
 										<option value=""></option>
 										<option value="Login Problem">Login Problem</option>

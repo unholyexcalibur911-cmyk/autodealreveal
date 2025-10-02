@@ -1,10 +1,11 @@
 import ColumnItemSection from "@/components/ColumnItemSections";
 import TextSectionCenter from "@/components/TextSectionLeft";
 import TextSectionLeft from "@/components/TextSectionCenter";
+import Background from "@/components/DefaultBackground";
 import TextSection from "@/components/TextSections";
 import ItemSection from "@/components/ItemSection";
 import Testimonial from "@/components/Testimonial";
-import Background from "@/components/DefaultBackground";
+import Brands from "@/components/BrandsLogos";
 import Section2 from "@/components/Section2";
 import Section1 from "@/components/Section1";
 import Hero from "@/components/Hero";
@@ -28,123 +29,150 @@ export default async function Home() {
   return (
     <main>
       {page.Sections?.map((section: any, index: number) => {
+        const SectionBg = !section.background ? <Background /> : null;
         switch (section.__component) {
           case "sections.hero":
             return (
-              <Hero
-                key={index}
-                title={section.title}
-                subtitle={section.subtitle}
-                background={
-                  section.background ? { url: section.background.url } : undefined
-                }
-                buttonText={section.buttonText}
-                buttonURL={section.buttonURL}
-                buttonText_2={section.buttonText_2}
-                buttonURL_2={section.buttonURL_2}
-              />
+              <div className="relative" key={index}>
+                {SectionBg}
+                <Hero
+                  title={section.title}
+                  subtitle={section.subtitle}
+                  background={
+                    section.background ? { url: section.background.url } : undefined
+                  }
+                  buttonText={section.buttonText}
+                  buttonURL={section.buttonURL}
+                  buttonText_2={section.buttonText_2}
+                  buttonURL_2={section.buttonURL_2}
+                />
+              </div>
             );
           case "sections.section1":
             return (
-              <Section1
-                key={index}
-                title={section.title}
-                subtitle={section.subtitle}
-                content={section.content}
-                background={
-                  section.background ? { url: section.background.url } : undefined
-                }
-                image={section.image ? { url: section.image.url } : undefined}
-                buttonText={section.buttonText}
-                buttonURL={section.buttonURL}
-                buttonText2={section.buttonText_2}
-                buttonURL2={section.buttonURL_2}
-              />
+              <div className="relative" key={index}>
+                {SectionBg}
+                <Section1
+                  title={section.title}
+                  subtitle={section.subtitle}
+                  content={section.content}
+                  background={
+                    section.background ? { url: section.background.url } : undefined
+                  }
+                  image={section.image ? { url: section.image.url } : undefined}
+                  buttonText={section.buttonText}
+                  buttonURL={section.buttonURL}
+                  buttonText2={section.buttonText_2}
+                  buttonURL2={section.buttonURL_2}
+                />
+              </div>
             );
           case "sections.section2":
             return (
-              <Section2
-                key={index}
-                title={section.title}
-                subtitle={section.subtitle}
-                content={section.content}
-                background={
-                  section.background ? { url: section.background.url } : undefined
-                }
-                image={section.image ? { url: section.image.url } : undefined}
-                buttonText={section.buttonText}
-                buttonURL={section.buttonURL}
-                buttonText2={section.buttonText_2}
-                buttonURL2={section.buttonURL_2}
-              />
+              <div className="relative" key={index}>
+                {SectionBg}
+                <Section2
+                  title={section.title}
+                  subtitle={section.subtitle}
+                  content={section.content}
+                  background={
+                    section.background ? { url: section.background.url } : undefined
+                  }
+                  image={section.image ? { url: section.image.url } : undefined}
+                  buttonText={section.buttonText}
+                  buttonURL={section.buttonURL}
+                  buttonText2={section.buttonText_2}
+                  buttonURL2={section.buttonURL_2}
+                />
+              </div>
             );
           case "sections.item-section":
             return (
-              <ItemSection
-                key={index}
-                title={section.title}
-                items={section.item || []}
-                background={
-                  section.background ? { url: section.background.url } : undefined
-                }
-              />
+              <div className="relative" key={index}>
+                {SectionBg}
+                <ItemSection
+                  title={section.title}
+                  items={section.item || []}
+                  background={
+                    section.background ? { url: section.background.url } : undefined
+                  }
+                />
+              </div>
             );
           case "sections.text-section":
             return (
-              <TextSection
-                key={index}
-                title={section.title}
-                content={section.content}
-                background={
-                  section.background ? { url: section.background.url } : undefined
-                }
-              />
+              <div className="relative" key={index}>
+                {SectionBg}
+                <TextSection
+                  title={section.title}
+                  content={section.content}
+                  background={
+                    section.background ? { url: section.background.url } : undefined
+                  }
+                />
+              </div>
             );
           case "sections.text-left":
             return (
-              <TextSectionLeft
-                key={index}
-                title={section.title}
-                content={section.content}
-                background={
-                  section.background ? { url: section.background.url } : undefined
-                }
-              />
+              <div className="relative" key={index}>
+                {SectionBg}
+                <TextSectionLeft
+                  title={section.title}
+                  content={section.content}
+                  background={
+                    section.background ? { url: section.background.url } : undefined
+                  }
+                />
+              </div>
             );
           case "sections.text-center":
             return (
-              <TextSectionCenter
-                key={index}
-                title={section.title}
-                content={section.content}
-                background={
-                  section.background ? { url: section.background.url } : undefined
-                }
-              />
+              <div className="relative" key={index}>
+                {SectionBg}
+                <TextSectionCenter
+                  title={section.title}
+                  content={section.content}
+                  background={
+                    section.background ? { url: section.background.url } : undefined
+                  }
+                />
+              </div>
             );
           case "sections.column-item-section": 
             return (
-              <ColumnItemSection
-                key={index}
-                title={section.title}
-                background={
-                  section.background ? { url: section.background.url } : undefined
-                }
-                column_item_content={section.column_item_content || []}
-              />
+              <div className="relative" key={index}>
+                {SectionBg}
+                <ColumnItemSection
+                  title={section.title}
+                  background={
+                    section.background ? { url: section.background.url } : undefined
+                  }
+                  column_item_content={section.column_item_content || []}
+                />
+              </div>
             );
-            case "sections.testimonial":
-              return (
-                <div style={{ position: 'relative' }} key={index}>
-                  {!section.background && <Background />}
-                  <Testimonial
-                    name={section.name}
-                    role={section.role}
-                    quote={section.quote || []}
-                    image={section.image ? { url: section.image.url } : undefined}
-                  />
-                </div>
-              );
+          case "sections.testimonial":
+            return (
+              <div className="relative" key={index}>
+                {SectionBg}
+                <Testimonial
+                  name={section.name}
+                  role={section.role}
+                  quote={section.quote || []}
+                  image={section.image ? { url: section.image.url } : undefined}
+                />
+              </div>
+            );
+          case "sections.brands":
+            return (
+              <div className="relative" key={index}>
+                {SectionBg}
+                <Brands
+                  title={section.title}
+                  image={section.image ? { url: section.image.url } : undefined}
+                />
+              </div>
+            );
           default:
             return null;
         }

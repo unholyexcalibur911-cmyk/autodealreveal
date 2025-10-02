@@ -38,7 +38,7 @@ export default function Navbar() {
                 const pageData = await pageRes.json();
                 const childRes = await fetch(`${baseUrl}/api/childpages?populate=page`);
                 const childData = await childRes.json();
-                const order = ["home", "about-us", "inventory", "products"];
+                const order = ["home", "products", "about-us"];
                 const sortedPages = [...pageData.data || []].sort (
                     (a: Page, b: Page) => order.indexOf(a.slug) - order.indexOf(b.slug)
                 );

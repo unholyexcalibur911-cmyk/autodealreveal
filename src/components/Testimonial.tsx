@@ -18,28 +18,28 @@ export default function Testimonial(
         quote 
     }: TestimonialProps) {
     return (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', padding: '2rem 0' }}>
-            <div style={{ flex: '0 0 120px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div className="flex items-center gap-8 py-8">
+            <div className="flex flex-col items-center shrink-0 w-[120px]">
                 {image?.url ? (
                     <Image
                         src={image.url}
                         alt={name + " profile"}
                         width={100}
                         height={100}
-                        style={{ borderRadius: '50%', objectFit: 'cover' }}
+                        className="rounded-full object-cover"
                     />
                 ) : (
-                    <div style={{ width: 100, height: 100, borderRadius: '50%', background: '#eee', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32 }}>
+                    <div className="w-[100px] h-[100px] rounded-full bg-gray-200 flex items-center justify-center text-4xl">
                         {name.charAt(0)}
                     </div>
                 )}
-                <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+                <div className="mt-4 text-center">
                     <strong>{name}</strong>
-                    <div style={{ fontSize: '0.9rem', color: '#666' }}>{role}</div>
+                    <div className="text-sm text-gray-500">{role}</div>
                 </div>
             </div>
-            <div style={{ flex: 1, background: '#f9f9f9', borderRadius: '8px', padding: '1.5rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-                <blockquote style={{ margin: 0, fontStyle: 'italic', color: '#333' }}>
+            <div className="flex-1 bg-gray-50 rounded-lg p-6 shadow-md">
+                <blockquote className="m-0 italic text-gray-800">
                     “{quote}”
                 </blockquote>
             </div>
