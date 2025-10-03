@@ -48,14 +48,14 @@ export default function Section1({
   }, []);
 
   return (
-    <section className="relative py-16 2xl:py-42 text-stone-100 " ref={sectionRef}>
+    <section className="relative py-16 2xl:py-42 bg-stone-100/40 text-stone-100" ref={sectionRef}>
       {background?.url && (
         <Image
           src={background.url}
           alt={title || "Section image"}
           fill
           priority
-          className="object-cover -z-10 brightness-60"
+          className="object-cover -z-10 brightness-80"
         />
       )}
 
@@ -94,7 +94,7 @@ export default function Section1({
 
         {/* Right column - Image slide in from right */}
         {image?.url && (
-          <div className={`relative flex items-center justify-center w-full h-full min-h-[400px] transition-all duration-700 ease-out bg-stone-500/80 rounded-lg ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-16 md:translate-x-16'}`}>
+          <div className={`relative flex items-center justify-center w-full h-full min-h-[400px] transition-all duration-700 ease-out rounded-lg ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-16 md:translate-x-16'}`}>
               <Image
                 src={image.url}
                 alt={title || "Section image"}
@@ -105,5 +105,5 @@ export default function Section1({
         )}
       </div>
     </section>
-  );
+  ); 
 }

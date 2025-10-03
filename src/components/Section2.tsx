@@ -61,7 +61,7 @@ export default function Section2({
           alt={title ?? "Background image"} 
           fill
           priority
-          className="object-cover brightness-60 -z-10"
+          className="object-cover brightness-80 -z-10"
         />
       )}
 

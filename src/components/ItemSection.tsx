@@ -21,7 +21,7 @@ interface ItemSectionProps {
 
 export default function ItemSection({ title, items, background }: ItemSectionProps) {
   return (
-    <section className="relative py-10 md:py-28 text-white bg-stone-300">
+    <section className="relative py-10 md:py-28 text-white bg-stone-300/40">
       {/* Section Background */}
       {background?.url && (
         <Image
@@ -35,7 +35,7 @@ export default function ItemSection({ title, items, background }: ItemSectionPro
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Title */}
-        <h1 className="text-4xl md:text-4xl text-gray-950 font-bold text-center mb-9 md:mb-16 text-shadow-lg">{title}</h1>
+        <h1 className="text-4xl md:text-4xl text-gray-950 font-bold text-center mb-9 md:mb-16 ">{title}</h1>
 
         {/* Items */}
         <div className="flex flex-wrap justify-center gap-8">
