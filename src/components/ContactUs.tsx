@@ -7,24 +7,27 @@ import { motion } from "framer-motion";
 const ContactUs: React.FC = () => {
     // Framer Motion label animation variants
     const labelVariants = {
-        focused: {
-            top: "0px",
-            left: "12px",
-            fontSize: "0.75rem",
-            color: "#2563eb",
-            backgroundColor: "#2b2d42",
-            padding: "0 0.25rem",
-        },
-        unfocused: {
-            top: "50%",
-            left: "16px",
-            fontSize: "1rem",
-            color: "#6b7280",
-            backgroundColor: "rgba(0,0,0,0)",
-            padding: "0",
-            translateY: "-50%",
-        },
-    };
+    focused: {
+        top: "0px",
+        left: "0.75rem",
+        fontSize: "0.75rem",
+        color: "#2563eb",
+        backgroundColor: "#2b2d42",
+        padding: "0 0.25rem",
+        translateY: "0%",
+        transition: { duration: 0.2 },
+    },
+    unfocused: {
+        top: "50%",
+        left: "1rem",
+        fontSize: "1rem",
+        color: "#6b7280",
+        backgroundColor: "rgba(0,0,0,0)",
+        padding: "0",
+        translateY: "-50%",
+        transition: { duration: 0.2 },
+    },
+};
     const [form, setForm] = useState({
         fullName: "",
         email: "",
@@ -38,10 +41,10 @@ const ContactUs: React.FC = () => {
     const [error, setError] = useState("");
 
     return (
-        <section className="bg-[#2b2d42] w-full mx-auto px-50 py-30 shadow-xl text-center border-b-2 border-[#7777aa]">
-            <h1 className="text-4xl text-gray-300 mb-8 -mt-8">Contact Us</h1>
+        <section className="bg-[#2b2d42] w-full mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-12 md:py-20 shadow-xl text-center border-b-2 border-[#7777aa]">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl text-gray-300 mb-6 sm:mb-8 -mt-4 sm:-mt-8">Contact Us</h1>
             <form
-                className="space-y-15"
+                className="space-y-8 sm:space-y-10"
                 onSubmit={async (e) => {
                     e.preventDefault();
                     setSending(true);
@@ -69,19 +72,20 @@ const ContactUs: React.FC = () => {
                     setSending(false);
                 }}
             >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-stone-100">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 md:gap-12 text-stone-100">
                     <div className="relative">
                         <input
                             type="text"
                             value={form.fullName}
                             onChange={e => setForm(f => ({ ...f, fullName: e.target.value }))}
-                            className="w-full border-b-2 border-white bg-transparent px-4 pt-6 pb-3 focus:outline-none focus:border-blue-600"
+                            className="w-full border-b-2 border-white bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
                         />
                         <motion.span
                             initial="unfocused"
                             animate={form.fullName ? "focused" : "unfocused"}
                             variants={labelVariants}
                             style={{ position: "absolute", pointerEvents: "none" }}
+                            className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-[#2b2d42] text-xs sm:text-sm"
                         >
                             Full Name
                         </motion.span>
@@ -92,13 +96,14 @@ const ContactUs: React.FC = () => {
                             required
                             value={form.email}
                             onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                            className="w-full border-b-2 border-white bg-transparent px-4 pt-6 pb-3 focus:outline-none focus:border-blue-600"
+                            className="w-full border-b-2 border-white bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
                         />
                         <motion.span
                             initial="unfocused"
                             animate={form.email ? "focused" : "unfocused"}
                             variants={labelVariants}
                             style={{ position: "absolute", pointerEvents: "none" }}
+                            className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-[#2b2d42] text-xs sm:text-sm"
                         >
                             Email
                         </motion.span>
@@ -108,13 +113,14 @@ const ContactUs: React.FC = () => {
                             type="text"
                             value={form.dealership}
                             onChange={e => setForm(f => ({ ...f, dealership: e.target.value }))}
-                            className="w-full border-b-2 border-white bg-transparent px-4 pt-6 pb-3 focus:outline-none focus:border-blue-600"
+                            className="w-full border-b-2 border-white bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
                         />
                         <motion.span
                             initial="unfocused"
                             animate={form.dealership ? "focused" : "unfocused"}
                             variants={labelVariants}
                             style={{ position: "absolute", pointerEvents: "none" }}
+                            className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-[#2b2d42] text-xs sm:text-sm"
                         >
                             Dealership Name or Group
                         </motion.span>
@@ -124,13 +130,14 @@ const ContactUs: React.FC = () => {
                             type="tel"
                             value={form.phone}
                             onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-                            className="w-full border-b-2 border-white bg-transparent px-4 pt-6 pb-3 focus:outline-none focus:border-blue-600"
+                            className="w-full border-b-2 border-white bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
                         />
                         <motion.span
                             initial="unfocused"
                             animate={form.phone ? "focused" : "unfocused"}
                             variants={labelVariants}
                             style={{ position: "absolute", pointerEvents: "none" }}
+                            className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-[#2b2d42] text-xs sm:text-sm"
                         >
                             Phone Number
                         </motion.span>
@@ -141,6 +148,7 @@ const ContactUs: React.FC = () => {
                             animate={form.referral ? "focused" : "unfocused"}
                             variants={labelVariants}
                             style={{ position: "absolute", pointerEvents: "none" }}
+                            className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-[#2b2d42] text-xs sm:text-sm"
                         >
                             How did you hear about us
                         </motion.span>
@@ -148,7 +156,7 @@ const ContactUs: React.FC = () => {
                             id="referral"
                             value={form.referral}
                             onChange={e => setForm(f => ({ ...f, referral: e.target.value }))}
-                            className="w-full border-b-2 border-white bg-transparent px-4 pt-6 pb-3 focus:text-white focus:bg-[#2b2d42] focus:outline-none focus:border-blue-600"
+                            className="w-full border-b-2 border-white bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:text-white focus:bg-[#2b2d42] focus:outline-none focus:border-blue-600 text-base sm:text-lg"
                         >
                             <option value=""></option>
                             <option value="Dealer referral">Dealer referral</option>
@@ -165,13 +173,14 @@ const ContactUs: React.FC = () => {
                                     type="text"
                                     value={form.otherReferral}
                                     onChange={e => setForm(f => ({ ...f, otherReferral: e.target.value }))}
-                                    className="w-full border-b-2 border-white bg-transparent px-4 pt-6 pb-3 focus:outline-none focus:border-blue-600"
+                                    className="w-full border-b-2 border-white bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
                                 />
                                 <motion.span
                                     initial="unfocused"
                                     animate={form.otherReferral ? "focused" : "unfocused"}
                                     variants={labelVariants}
                                     style={{ position: "absolute", pointerEvents: "none" }}
+                                    className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-[#2b2d42] text-xs sm:text-sm"
                                 >
                                     Please specify
                                 </motion.span>
@@ -181,7 +190,7 @@ const ContactUs: React.FC = () => {
                 </div>
                 <button
                     type="submit"
-                    className="w-42 rounded-2xl rounded bg-[#115596] py-3 font-semibold text-white hover:bg-[#cd2b29]"
+                    className="w-full sm:w-42 rounded-2xl bg-[#115596] py-3 font-semibold text-white hover:bg-[#cd2b29] mt-4 sm:mt-0"
                     disabled={sending}
                 >
                     {sending ? "Requesting" : "Request a Demo"}

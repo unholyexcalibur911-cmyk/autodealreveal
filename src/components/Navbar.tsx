@@ -54,7 +54,7 @@ export default function Navbar() {
     const getChildren = (pageId: number) => childPages.filter((child) => child.page?.id === pageId);
 
     return (
-        <nav className="sticky top-0 z-50 opacity-100 md:pr-15 pl-6 py-4 lg:pr-20 whitespace-nowrap transition-all duration-300 bg-stone-200 text-red-600">
+        <nav className="sticky top-0 z-50 opacity-100 md:pr-15 pl-6 py-4 lg:pr-20 whitespace-nowrap transition-all duration-300 bg-stone-200 text-red-800">
             <div className="flex justify-between items-center">
                 {/* Logo or Brand Name */}
                 <Link href="/" className="flex justify-start pl-6">
@@ -94,7 +94,7 @@ export default function Navbar() {
                                 </Link>
 
                                 {children.length > 0 && openPageId === page.id && (
-                                    <div className="absolute -left-20 bg-stone-300 text-red-600 rounded z-50 w-64">
+                                    <div className="absolute -left-20 bg-stone-300 text-red-800 rounded z-50 w-64">
                                         {children.map((child) => {
                                             const isActiveChild = pathname === `/${page.slug}/${child.slug}`;
                                             return (

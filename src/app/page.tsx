@@ -4,7 +4,6 @@ import TextSectionLeft from "@/components/TextSectionCenter";
 import Background from "@/components/DefaultBackground";
 import TextSection from "@/components/TextSections";
 import ItemSection from "@/components/ItemSection";
-import Brands from "@/components/BrandsLogos";
 import Section2 from "@/components/Section2";
 import Section1 from "@/components/Section1";
 import Hero from "@/components/Hero";
@@ -147,16 +146,6 @@ export default async function Home() {
                     section.background ? { url: section.background.url } : undefined
                   }
                   column_item_content={section.column_item_content || []}
-                />
-              </div>
-            );
-          case "sections.brands":
-            return (
-              <div className="relative" key={index}>
-                {SectionBg}
-                <Brands
-                  title={section.title}
-                  image={section.image ? { url: section.image.url } : undefined}
                 />
               </div>
             );
