@@ -22,7 +22,7 @@ export default function RootLayout({
         <ClientWrapper>
           <Navbar />
           <main>{children}</main>
-          
+          <ContactUs />
           <Footer />
         </ClientWrapper>
       </body>
