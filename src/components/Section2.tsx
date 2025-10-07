@@ -100,7 +100,7 @@ export default function Section2({
 
             {/* Markdown content */}
             {content && (
-              <div className="richtext text-center 2xl:text-left prose prose-stone max-w-none text-stone-800">
+              <div className="richtext text-left 2xl:text-left prose prose-stone max-w-none text-stone-800">
                 <ReactMarkdown>{content}</ReactMarkdown>
               </div>
             )}

@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { FaFacebookSquare, FaInstagramSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 
 interface Page {
     id: number;
@@ -32,9 +31,9 @@ export default function Footer() {
             async function fetchPages() {
                 try {
                     const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
-                    const pageRes = await fetch(`${baseUrl}/api/pages?populate[Sections][populate]=*`);
+                    const pageRes = await fetch(`${baseUrl}/api/pages?populate[Sections][populate]=*`); // Fetch page sections 
                     const pageData = await pageRes.json();
-                    const childRes = await fetch(`${baseUrl}/api/childpages?populate[page]=true&populate[sections][populate]=*`);
+                    const childRes = await fetch(`${baseUrl}/api/childpages?populate[page]=true&populate[sections][populate]=*`); // Fetch child page sections 
                     const childData = await childRes.json();
                     const order = ["home", "about-us", "inventory", "products"];
                     const sortedPages = [...pageData.data || []].sort (
