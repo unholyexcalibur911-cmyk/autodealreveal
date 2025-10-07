@@ -18,7 +18,7 @@ export default function PageLoader() {
 
     // Render the loader overlay
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-200 bg-opacity-80">
             {/* Container for the spinners to center them */}
                 <div className="relative flex h-28 w-28 items-center justify-center">
         
@@ -30,7 +30,7 @@ export default function PageLoader() {
                             cy="50"
                             r="45"
                             fill="none"
-                            stroke="currentColor"
+                            stroke="transparent"
                             strokeWidth="5"
                             strokeDasharray="15 10" // Creates the dashed effect
                             className="text-[#2b2d42] opacity-50"
@@ -39,7 +39,7 @@ export default function PageLoader() {
                 </div>
 
             {/* Inner Solid Arc - Rotates Clockwise */}
-            <div className="absolute h-20 w-20 rounded-full border-4 border-solid border-t-[#2b2d42] border-r-transparent border-b-transparent border-l-transparent animate-spin"></div>
+            <div className="absolute h-20 w-20 rounded-full border-4 border-solid border-t-transparent border-r-[#2b2d42] border-b-transparent border-l-[#2b2d42] animate-spin"></div>
 
             </div>
         </div>
