@@ -46,7 +46,7 @@ export default function ItemContent({
               alt={title}
               width={70}
               height={70}
-              className="mx-auto invert my-6"
+              className="mx-auto fill-[#2b2d42] my-6"
             />
           </div>
         )}

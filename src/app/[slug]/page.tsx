@@ -1,4 +1,3 @@
-import ColumnItemSection from "@/components/ColumnItemSections";
 import TextSectionCenter from "@/components/TextSectionLeft";
 import TextSectionLeft from "@/components/TextSectionCenter";
 import Background from "@/components/DefaultBackground";
@@ -14,7 +13,7 @@ export default async function Page({ params }:
 
     const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
     const res = await fetch(
-      `${baseUrl}/api/pages?filters[slug][$eq]=${slug}&populate[Sections][populate]=*`,
+      `${baseUrl}/api/pages?filters[slug][$eq]=${slug}&populate=Sections.background&populate=Sections.image&populate=Sections.BackgroundImage&populate=Sections.item.icon&populate=Sections.column_item_content.image`,
       { cache: "no-store" }
     );
 
@@ -132,19 +131,6 @@ export default async function Page({ params }:
                   background={
                     section.background ? { url: section.background.url } : undefined
                   }
-                />
-              </div>
-            );
-          case "sections.column-item-section": 
-            return (
-              <div className="relative" key={index}>
-                {SectionBg}
-                <ColumnItemSection
-                  title={section.title}
-                  background={
-                    section.background ? { url: section.background.url } : undefined
-                  }
-                  column_item_content={section.column_item_content || []}
                 />
               </div>
             );

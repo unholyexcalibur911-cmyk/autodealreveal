@@ -1,4 +1,3 @@
-import ColumnItemSection from "@/components/ColumnItemSections";
 import TextSectionCenter from "@/components/TextSectionLeft";
 import TextSectionLeft from "@/components/TextSectionCenter";
 import Background from "@/components/DefaultBackground"; 
@@ -13,7 +12,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ slug:
 
   const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
   const res = await fetch(
-    `${baseUrl}/api/childpages?filters[slug][$eq]=${slug}&populate[page]=true&populate[sections][populate]=*`,
+    `${baseUrl}/api/childpages?filters[slug][$eq]=${slug}&populate=sections.background&populate=sections.image&populate=sections.BackgroundImage&populate=sections.item.icon&populate=sections.column_item_content.image`,
     { cache: "no-store" }
   );
 
@@ -131,19 +130,6 @@ export default async function ProductsPage({ params }: { params: Promise<{ slug:
                   background={
                     section.background ? { url: section.background.url } : undefined
                   }
-                />
-              </div>
-            );
-          case "sections.column-item-section": 
-            return (
-              <div className="relative" key={index}>
-                {SectionBg}
-                <ColumnItemSection
-                  title={section.title}
-                  background={
-                    section.background ? { url: section.background.url } : undefined
-                  }
-                  column_item_content={section.column_item_content || []}
                 />
               </div>
             );

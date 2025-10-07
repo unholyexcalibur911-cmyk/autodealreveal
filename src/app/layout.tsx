@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactUs from "@/components/ContactUs";
+import ClientWrapper from "@/components/ClientWrapper";
 
 
 export const metadata: Metadata = {
@@ -17,12 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <Navbar/>
-        <main>{children}</main>
-        {/* the map should be here */}
-        <ContactUs/>
-        <Footer/>
+      <body className="relative">
+        <ClientWrapper>
+          <Navbar />
+          <main>{children}</main>
+          
+          <Footer />
+        </ClientWrapper>
       </body>
     </html>
   );

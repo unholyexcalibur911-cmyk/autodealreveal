@@ -40,7 +40,7 @@ export default function TextSection({ title, content, background }: TextSectionP
         </video>
       )}
 
-      <div className="text-stone-800 relative z-10 max-w-6xl mx-auto px-6 text-center">
+      <div className="text-stone-800 relative z-10 max-w-6xl mx-auto px-6 text-left">
         <h2 className="text-3xl md:text-5xl font-bold mb-12">{title}</h2>
 
         {content && (
