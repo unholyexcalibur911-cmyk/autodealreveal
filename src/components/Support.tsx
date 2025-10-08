@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 import React from "react";
@@ -80,7 +80,7 @@ const Support: React.FC = () => {
 									);
 									setSent(true);
 									setForm({ fullName: "", email: "", issue: "", details: "" });
-								} catch (err) {
+								} catch {
 									setError("Failed to send. Please try again.");
 								}
 								setSending(false);

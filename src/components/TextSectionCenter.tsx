@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
@@ -15,9 +15,11 @@ interface TextSectionProps {
 export default function TextSection({ title, content, background }: TextSectionProps) {
   const testVideo = "/MovingBg.mp4";
   const testPoster = "/testBackground.jpg";
+  const videoRef = React.useRef<HTMLVideoElement>(null);
 
   return (
-    <section className="min-h-[500px] relative py-24 text-gray-800 bg-stone-300 -z-20">
+    <section className="min-h-[500px] relative py-24 text-gray-800 bg-white -z-20">
+      {/* Background */}
       {background?.url ? (
         <Image
           src={background.url}
@@ -29,6 +31,7 @@ export default function TextSection({ title, content, background }: TextSectionP
         />
       ) : (
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
@@ -40,7 +43,8 @@ export default function TextSection({ title, content, background }: TextSectionP
         </video>
       )}
 
-      <div className="text-stone-800 relative z-10 max-w-6xl mx-auto px-6 text-left">
+      {/* Content */}
+      <div className="text-stone-800 relative z-10 max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-5xl font-bold mb-12">{title}</h2>
 
         {content && (
@@ -49,24 +53,22 @@ export default function TextSection({ title, content, background }: TextSectionP
               rehypePlugins={[rehypeRaw]}
               remarkPlugins={[remarkGfm]}
               components={{
-                h1: ({ node, ...props }) => <h1 className="text-4xl mt-8 mb-4" {...props} />,
-                h2: ({ node, ...props }) => <h2 className="text-3xl mt-6 mb-3" {...props} />,
-                h3: ({ node, ...props }) => <h2 className="text-2xl mt-6 mb-3" {...props} />,
-                h4: ({ node, ...props }) => <h2 className="text-xl mt-6 mb-3" {...props} />,
-                h5: ({ node, ...props }) => <h2 className="text-lg mt-6 mb-3" {...props} />,
-                h6: ({ node, ...props }) => <h2 className="text-md mt-6 mb-3" {...props} />,
-                p: ({ node, ...props }) => <p className="mb-4 " {...props} />,
-                a: ({ node, ...props }) => (
-                  <a className="text-blue-600 hover:underline" {...props} />
+                h1: (props) => (<h1 className="text-4xl mt-8 mb-4" {...props} />),
+                h2: (props) => (<h2 className="text-3xl mt-6 mb-3" {...props} />),
+                h3: (props) => <h2 className="text-2xl mt-6 mb-3" {...props} />,
+                h4: (props) => <h2 className="text-xl mt-6 mb-3" {...props} />,
+                h5: (props) => <h2 className="text-lg mt-6 mb-3" {...props} />,
+                h6: (props) => <h2 className="text-md mt-6 mb-3" {...props} />,
+                p: (props) => <p className="mb-4" {...props} />,
+                a: (props) => (
+                  <a
+                    className="text-blue-600 hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    {...props}
+                  />
                 ),
-                code: ({
-                  node,
-                  inline,
-                  className,
-                  children,
-                  ...props
-                }: {
-                  node?: any;
+                code: ({ inline, className, children, ...props }: {
                   inline?: boolean;
                   className?: string;
                   children?: React.ReactNode;
@@ -82,7 +84,6 @@ export default function TextSection({ title, content, background }: TextSectionP
                       </code>
                     </pre>
                   ),
-
               }}
             >
               {content}

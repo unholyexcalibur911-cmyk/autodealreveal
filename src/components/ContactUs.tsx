@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 
@@ -66,7 +66,7 @@ const ContactUs: React.FC = () => {
                         );
                         setSent(true);
                         setForm({ fullName: "", email: "", dealership: "", phone: "", referral: "", otherReferral: "" });
-                    } catch (err) {
+                    } catch {
                         setError("Failed to send. Please try again.");
                     }
                     setSending(false);

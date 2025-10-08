@@ -1,5 +1,5 @@
-import TextSectionCenter from "@/components/TextSectionLeft";
-import TextSectionLeft from "@/components/TextSectionCenter";
+import TextSectionCenter from "@/components/TextSectionCenter";
+import TextSectionLeft from "@/components/TextSectionLeft";
 import Background from "@/components/DefaultBackground";
 import TextSection from "@/components/TextSections";
 import ItemSection from "@/components/ItemSection";
@@ -25,7 +25,28 @@ export default async function Home() {
 
   return (
     <main>
-      {page.Sections?.map((section: any, index: number) => {
+      {page.Sections?.map((section: {
+        __component: string;
+        title?: string;
+        subtitle?: string;
+        content?: string;
+        background?: { url: string };
+        image?: { url: string };
+        item?: {
+          id?: number;
+          title?: string;
+          description?: string;
+          icon?: { url: string };
+          buttonText?: string;
+          buttonURL?: string;
+          background?: { url: string };
+          [key: string]: unknown;
+        }[];
+        buttonText?: string;
+        buttonURL?: string;
+        buttonText_2?: string;
+        buttonURL_2?: string;
+      }, index: number) => {
         const SectionBg = !section.background ? <Background /> : null;
         switch (section.__component) {
           case "sections.hero":
@@ -33,8 +54,8 @@ export default async function Home() {
               <div className="relative" key={index}>
                 {SectionBg}
                 <Hero
-                  title={section.title}
-                  subtitle={section.subtitle}
+                  title={section.title ?? ""}
+                  subtitle={section.subtitle ?? ""}
                   background={
                     section.background ? { url: section.background.url } : undefined
                   }
@@ -50,7 +71,7 @@ export default async function Home() {
               <div className="relative" key={index}>
                 {SectionBg}
                 <Section1
-                  title={section.title}
+                  title={section.title ?? ""}
                   subtitle={section.subtitle}
                   content={section.content}
                   background={
@@ -69,7 +90,7 @@ export default async function Home() {
               <div className="relative" key={index}>
                 {SectionBg}
                 <Section2
-                  title={section.title}
+                  title={section.title ?? ""}
                   subtitle={section.subtitle}
                   content={section.content}
                   background={
@@ -88,8 +109,13 @@ export default async function Home() {
               <div className="relative" key={index}>
                 {SectionBg}
                 <ItemSection
-                  title={section.title}
-                  items={section.item || []}
+                  title={section.title ?? ""}
+                  items={(section.item || []).map((item, idx) => ({
+                    ...item,
+                    id: typeof item.id === "number" ? item.id : idx,
+                    title: item.title ?? "",
+                    description: item.description ?? ""
+                  }))}
                   background={
                     section.background ? { url: section.background.url } : undefined
                   }
@@ -101,8 +127,8 @@ export default async function Home() {
               <div className="relative" key={index}>
                 {SectionBg}
                 <TextSection
-                  title={section.title}
-                  content={section.content}
+                  title={section.title ?? ""}
+                  content={section.content ?? ""}
                   background={
                     section.background ? { url: section.background.url } : undefined
                   }
@@ -114,8 +140,8 @@ export default async function Home() {
               <div className="relative" key={index}>
                 {SectionBg}
                 <TextSectionLeft
-                  title={section.title}
-                  content={section.content}
+                  title={section.title ?? ""}
+                  content={section.content ?? ""}
                   background={
                     section.background ? { url: section.background.url } : undefined
                   }
@@ -127,8 +153,8 @@ export default async function Home() {
               <div className="relative" key={index}>
                 {SectionBg}
                 <TextSectionCenter
-                  title={section.title}
-                  content={section.content}
+                  title={section.title ?? ""}
+                  content={section.content ?? ""}
                   background={
                     section.background ? { url: section.background.url } : undefined
                   }

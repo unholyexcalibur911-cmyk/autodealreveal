@@ -20,7 +20,6 @@ interface Section2Props {
 
 export default function Section2({
   title,
-  subtitle,
   content,
   image,
   background,
@@ -104,47 +103,39 @@ export default function Section2({
             {content && (
               <div className="richtext text-left 2xl:text-left prose prose-stone max-w-none text-stone-800">
                 <ReactMarkdown
-                rehypePlugins={[rehypeRaw]}
-                remarkPlugins={[remarkGfm]}
-                components={{
-                  h1: ({ node, ...props }) => <h1 className="text-4xl mt-8 mb-4" {...props} />,
-                  h2: ({ node, ...props }) => <h2 className="text-3xl mt-6 mb-3" {...props} />,
-                  h3: ({ node, ...props }) => <h2 className="text-2xl mt-6 mb-3" {...props} />,
-                  h4: ({ node, ...props }) => <h2 className="text-xl mt-6 mb-3" {...props} />,
-                  h5: ({ node, ...props }) => <h2 className="text-lg mt-6 mb-3" {...props} />,
-                  h6: ({ node, ...props }) => <h2 className="text-md mt-6 mb-3" {...props} />,
-                  p: ({ node, ...props }) => <p className="mb-4 " {...props} />,
-                  a: ({ node, ...props }) => (
-                    <a className="text-blue-600 hover:underline" {...props} />
-                  ),
-                  code: ({
-                    node,
-                    inline,
-                    className,
-                    children,
-                    ...props
-                  }: {
-                    node?: any;
-                    inline?: boolean;
-                    className?: string;
-                    children?: React.ReactNode;
-                  }) =>
-                    inline ? (
-                      <code className="bg-gray-200 rounded px-1" {...props}>
-                        {children}
-                      </code>
-                    ) : (
-                      <pre className="bg-gray-900 text-white p-4 rounded-xl overflow-x-auto">
-                        <code className={className} {...props}>
+                  rehypePlugins={[rehypeRaw]}
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    h1: (props) => <h1 className="text-4xl mt-8 mb-4" {...props} />,
+                    h2: (props) => <h2 className="text-3xl mt-6 mb-3" {...props} />,
+                    h3: (props) => <h2 className="text-2xl mt-6 mb-3" {...props} />,
+                    h4: (props) => <h2 className="text-xl mt-6 mb-3" {...props} />,
+                    h5: (props) => <h2 className="text-lg mt-6 mb-3" {...props} />,
+                    h6: (props) => <h2 className="text-md mt-6 mb-3" {...props} />,
+                    p: (props) => <p className="mb-4 " {...props} />,
+                    a: (props) => (
+                      <a className="text-blue-600 hover:underline" {...props} />
+                    ),
+                    code: ({ inline, className, children, ...props }: {
+                      inline?: boolean;
+                      className?: string;
+                      children?: React.ReactNode;
+                    }) =>
+                      inline ? (
+                        <code className="bg-gray-200 rounded px-1" {...props}>
                           {children}
                         </code>
-                      </pre>
-                    ),
-
-                }}
-                  >{content}
-                  </ReactMarkdown>
-                </div>
+                      ) : (
+                        <pre className="bg-gray-900 text-white p-4 rounded-xl overflow-x-auto">
+                          <code className={className} {...props}>
+                            {children}
+                          </code>
+                        </pre>
+                      ),
+                  }}
+                >{content}
+                </ReactMarkdown>
+              </div>
             )}
 
             {/* Buttons */}
