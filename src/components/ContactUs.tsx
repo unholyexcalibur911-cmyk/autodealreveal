@@ -46,19 +46,6 @@ const ContactUs: React.FC = () => {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
 
-  // Modal animation variants
-  const modalVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
-    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } },
-  };
-
-  const backdropVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 0.5, transition: { duration: 0.3 } },
-    exit: { opacity: 0, transition: { duration: 0.2 } },
-  };
-
   return (
     <>
       <section className="bg-[#2b2d42] w-full mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-12 md:py-20 shadow-xl text-center border-b-2 border-[#7777aa]">
