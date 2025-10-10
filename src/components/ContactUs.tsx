@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import PrivacyPolicyModal from "./PrivacyPolicyModal";
 const ContactUs: React.FC = () => {
   const [nonMarketingAgreed, setNonMarketingAgreed] = useState(false);
@@ -240,10 +240,10 @@ const ContactUs: React.FC = () => {
                 I agree to receive non-marketing SMS messages related to
                 customer care, product troubleshooting, service updates,
                 reminders, notifications, appointment confirmations, and
-                follow-ups. Message frequency may vary. Reply 'HELP' for
-                assistance or 'STOP' to unsubscribe. Standard message and data
-                rates may apply. My information will be handled in accordance
-                with the{" "}
+                follow-ups. Message frequency may vary.{" "}
+                {"Reply 'HELP' for assistance or 'STOP' to unsubscribe."}
+                Standard message and data rates may apply. My information will
+                be handled in accordance with the{" "}
                 <button
                   type="button"
                   onClick={() => setIsPrivacyOpen(true)}
@@ -271,9 +271,10 @@ const ContactUs: React.FC = () => {
                 className="ml-3 block text-sm text-gray-300 leading-6"
               >
                 I agree to receive marketing SMS messages related to promotional
-                offers. Message frequency may vary. Reply 'HELP' for assistance
-                or 'STOP' to unsubscribe. Standard message and data rates may
-                apply. My information will be handled in accordance with the{" "}
+                offers. Message frequency may vary.{" "}
+                {"Reply 'HELP' for assistance or 'STOP' to unsubscribe."} to
+                unsubscribe. Standard message and data rates may apply. My
+                information will be handled in accordance with the{" "}
                 <button
                   type="button"
                   onClick={() => setIsPrivacyOpen(true)}
