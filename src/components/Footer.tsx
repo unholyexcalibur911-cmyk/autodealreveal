@@ -160,7 +160,9 @@ export default function Footer() {
             Copyright © 2025 Auto Deal Reveal | All Rights Reserved.
             <span>
               <Link href={`/terms-and-conditions`}>
-                <div className="text-bold">Terms and Conditions</div>
+                <div className="text-blue-400 hover:text-blue-300 underline transition duration-200">
+                  Terms and Conditions
+                </div>
               </Link>
             </span>
           </div>
