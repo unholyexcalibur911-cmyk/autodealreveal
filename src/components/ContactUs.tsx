@@ -224,6 +224,7 @@ const ContactUs: React.FC = () => {
             <div className="flex items-start">
               <input
                 type="checkbox"
+                required
                 id="non-marketing-agree"
                 checked={nonMarketingAgreed}
                 onChange={() => setNonMarketingAgreed(!nonMarketingAgreed)}
@@ -244,13 +245,13 @@ const ContactUs: React.FC = () => {
                 {"Reply 'HELP' for assistance or 'STOP' to unsubscribe."}
                 Standard message and data rates may apply. My information will
                 be handled in accordance with the{" "}
-                <button
-                  type="button"
-                  onClick={() => setIsPrivacyOpen(true)}
+                <a
+                  target="_blank"
+                  href="/privacy-policy"
                   className="text-blue-400 hover:text-blue-300 underline transition duration-200"
                 >
                   Privacy Policy
-                </button>
+                </a>
                 .
               </label>
             </div>
@@ -258,6 +259,7 @@ const ContactUs: React.FC = () => {
               <input
                 type="checkbox"
                 id="marketing-agree"
+                required
                 checked={marketingAgreed}
                 onChange={() => setMarketingAgreed(!marketingAgreed)}
                 className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mt-1
@@ -275,26 +277,32 @@ const ContactUs: React.FC = () => {
                 {"Reply 'HELP' for assistance or 'STOP' to unsubscribe."} to
                 unsubscribe. Standard message and data rates may apply. My
                 information will be handled in accordance with the{" "}
-                <button
-                  type="button"
-                  onClick={() => setIsPrivacyOpen(true)}
+                <a
+                  target="_blank"
+                  href="/privacy-policy"
                   className="text-blue-400 hover:text-blue-300 underline transition duration-200"
                 >
                   Privacy Policy
-                </button>
+                </a>
                 .
               </label>
             </div>
           </div>
           <button
             type="submit"
+            title={
+              !nonMarketingAgreed && !marketingAgreed
+                ? "Please agree to at least one checkbox"
+                : ""
+            }
             className="w-full sm:w-48 rounded-2xl bg-[#115596] py-3 font-semibold text-white
-              hover:bg-[#cd2b29] transition duration-200 mt-6
-              disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={sending}
+          hover:bg-[#cd2b29] transition duration-200 mt-6
+          disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={sending || (!nonMarketingAgreed && !marketingAgreed)}
           >
             {sending ? "Requesting..." : "Request a Demo"}
           </button>
+
           {sent && <div className="text-green-400 mt-2">Message sent!</div>}
           {error && <div className="text-red-400 mt-2">{error}</div>}
         </form>
