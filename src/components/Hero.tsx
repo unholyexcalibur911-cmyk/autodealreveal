@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 interface HeroProps {
   title: string;
@@ -22,7 +23,7 @@ export default function Hero({
   buttonURL_2,
 }: HeroProps) {
   return (
-    <section className="relative h-screen w-full text-stone-100">
+    <section className="relative flex h-screen w-full flex-col items-center justify-center text-stone-100">
       {/* Background Image */}
       {background?.url && (
         <Image
@@ -30,36 +31,46 @@ export default function Hero({
           alt={title}
           fill
           priority
-          quality={100}
-          className="object-cover"
+          quality={90}
+          className="object-cover brightness-75"
         />
       )}
 
-      {/* Content at the bottom of the image */}
-      <div className="absolute bottom-0 2xl:bottom-14 left-1/2 transform -translate-x-1/2 w-full px-6 py-12 text-center z-10">
-        <h1 className="text-4xl md:text-4xl 2xl:text-4xl font-bold mb-4 text-shadow-lg max-w-3xl lg:max-w-4xl text-center mx-auto">{title}</h1>
+      {/* Content Container */}
+      <div className="absolute z-10 w-full px-4 text-center sm:px-6 lg:px-8">
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0" />
 
-        {subtitle && (
-          <p className="text-lg md:text-2xl mb-6 text-shadow-xl max-w-4xl mx-auto">{subtitle}</p>
-        )}
+        {/* Content */}
+        <div className="relative mx-auto max-w-5xl">
+          <h1 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl text-center">
+            {title}
+          </h1>
 
-        <div className="flex flex-col md:flex-row gap-4 justify-center items-center mt-6">
-          {buttonText && buttonURL && (
-            <a
-              href={buttonURL}
-              className="inline-block bg-[#084d8c]/50 text-White px-12 py-4 rounded-2xl font-bold hover:text-white hover:bg-[#084d8c] transition-colors duration-400 hover:-translate-y-1 ease-in-out shadow-xl/40 md:text-lg border-3 hover:border-[#084d8c] border-[#084d8c]"
-            >
-              {buttonText}
-            </a>
+          {subtitle && (
+            <p className="mb-6 text-base sm:text-lg md:text-xl lg:text-2xl text-center">
+              {subtitle}
+            </p>
           )}
-          {buttonText_2 && buttonURL_2 && (
-            <a
-              href={buttonURL_2}
-              className="inline-block bg-[#084d8c]/60 text-stone-300 px-12 py-4 rounded-2xl font-bold hover:bg-[#084d8c] hover:text-white transition-colors duration-400 shadow-xl/40 md:text-lg border-3 border-[#084d8c]"
-            >
-              {buttonText_2}
-            </a>
-          )}
+
+          <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-center">
+            {buttonText && buttonURL && (
+              <Link
+                href={buttonURL}
+                className="inline-block rounded-2xl border-2 border-indigo-500 bg-indigo-500/70 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-500 sm:px-8 sm:text-base"
+              >
+                {buttonText}
+              </Link>
+            )}
+            {buttonText_2 && buttonURL_2 && (
+              <Link
+                href={buttonURL_2}
+                className="inline-block rounded-2xl border-2 border-indigo-500 bg-indigo-500/30 px-6 py-3 text-sm font-semibold text-stone-100 transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-500 hover:text-white sm:px-8 sm:text-base"
+              >
+                {buttonText_2}
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </section>
