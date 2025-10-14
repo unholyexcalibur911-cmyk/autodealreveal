@@ -83,26 +83,38 @@ export default function Section1({
                 rehypePlugins={[rehypeRaw]}
                 remarkPlugins={[remarkGfm]}
                 components={{
-                  h1: (props) => <h1 className="text-4xl mt-8 mb-4" {...props} />,
-                  h2: (props) => <h2 className="text-3xl mt-6 mb-3" {...props} />,
-                  h3: (props) => <h2 className="text-2xl mt-6 mb-3" {...props} />,
-                  h4: (props) => <h2 className="text-xl mt-6 mb-3" {...props} />,
-                  h5: (props) => <h2 className="text-lg mt-6 mb-3" {...props} />,
-                  h6: (props) => <h2 className="text-md mt-6 mb-3" {...props} />,
+                  h1: (props) => (
+                    <h1 className="text-4xl mt-8 mb-4" {...props} />
+                  ),
+                  h2: (props) => (
+                    <h2 className="text-3xl mt-6 mb-3" {...props} />
+                  ),
+                  h3: (props) => (
+                    <h2 className="text-2xl mt-6 mb-3" {...props} />
+                  ),
+                  h4: (props) => (
+                    <h2 className="text-xl mt-6 mb-3" {...props} />
+                  ),
+                  h5: (props) => (
+                    <h2 className="text-lg mt-6 mb-3" {...props} />
+                  ),
+                  h6: (props) => (
+                    <h2 className="text-md mt-6 mb-3" {...props} />
+                  ),
                   p: (props) => <p className="mb-4 " {...props} />,
                   a: (props) => (
-                      <a className="text-blue-600 hover:underline" {...props} />
+                    <a className="text-blue-600 hover:underline" {...props} />
                   ),
                   code: ({
-                      inline,
-                      className,
-                      children,
-                      ...props
-                    }: {
-                      inline?: boolean;
-                      className?: string;
-                      children?: React.ReactNode;
-                    }) =>
+                    inline,
+                    className,
+                    children,
+                    ...props
+                  }: {
+                    inline?: boolean;
+                    className?: string;
+                    children?: React.ReactNode;
+                  }) =>
                     inline ? (
                       <code className="bg-gray-200 rounded px-1" {...props}>
                         {children}
@@ -114,9 +126,10 @@ export default function Section1({
                         </code>
                       </pre>
                     ),
-
                 }}
-              >{content}</ReactMarkdown>
+              >
+                {content}
+              </ReactMarkdown>
             </div>
           )}
 
@@ -125,7 +138,7 @@ export default function Section1({
             {buttonText && buttonURL && (
               <a
                 href={buttonURL}
-                className="inline-block bg-[#084d8c]/0 text-stone-950 px-12 py-4 rounded-2xl font-bold hover:text-white hover:bg-[#084d8c] transition-colors duration-400 shadow-xl/40 md:text-lg border-2 border-[#084d8c]"
+                className="inline-block bg-[#6366f1]/0 text-stone-950 px-12 py-4 rounded-2xl font-bold hover:text-white hover:bg-[#6366f1] transition-colors duration-400 shadow-xl/40 md:text-lg border-2 border-[#6366f1]"
               >
                 {buttonText}
               </a>
@@ -134,7 +147,7 @@ export default function Section1({
             {buttonText2 && buttonURL2 && (
               <a
                 href={buttonURL2}
-                className="inline-block bg-[#084d8c]/0 text-stone-950 px-12 py-4 rounded-2xl font-bold hover:bg-[#084d8c] hover:text-white transition-colors duration-400 shadow-xl/40 md:text-lg border-2 border-[#084d8c]"
+                className="inline-block bg-[#6366f1]/0 text-stone-950 px-12 py-4 rounded-2xl font-bold hover:bg-[#6366f1] hover:text-white transition-colors duration-400 shadow-xl/40 md:text-lg border-2 border-[#6366f1]"
               >
                 {buttonText2}
               </a>

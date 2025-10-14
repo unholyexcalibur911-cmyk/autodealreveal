@@ -57,7 +57,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-[#2b2d42] text-stone-200 text-shadow-lg pb-5">
+      <footer className="bg-[#131022] text-stone-200 text-shadow-lg pb-5">
         {/* Top Section */}
         <div className=" px-6 md:px-18 max-w-6xl mx-auto py-15 grid gap-10 sm:grid-cols-3 text-center md:text-left">
           {/* 1st Column */}
@@ -74,7 +74,7 @@ export default function Footer() {
               {/* Social media items */}
             </div>
 
-            <button className="bg-[#115596] hover:bg-[#cd2b29] px-8 py-4 font-bold mt-6 hover:text-white transition-colors duration-300 ease-in-out">
+            <button className="bg-[#6366f1] hover:bg-[#] px-8 py-4 font-bold mt-6 hover:text-white transition-colors duration-300 ease-in-out">
               EMAIL US
             </button>
           </div>
@@ -101,8 +101,8 @@ export default function Footer() {
                         href={page.slug === "home" ? "/" : `/${page.slug}`}
                         className={`flex items-center gap-2 text-xl ${
                           isActiveParent
-                            ? "text-red-500"
-                            : "hover:text-[#1565c0]"
+                            ? "text-[#6366f1]"
+                            : "hover:text-[#6366f1]"
                         }`}
                       >
                         {page.title}
@@ -110,7 +110,7 @@ export default function Footer() {
                       </Link>
 
                       {children.length > 0 && openPageId === page.id && (
-                        <div className="absolute left-0 bg-[#2b2f56] text-stone-200 rounded z-50 w-64">
+                        <div className="absolute left-0 bg-[#2b2f56] text-stone-200 p-2 rounded z-50 w-64 h-32 overflow-auto">
                           {children.map((child) => {
                             const isActiveChild =
                               pathname === `/${page.slug}/${child.slug}`;
@@ -118,8 +118,8 @@ export default function Footer() {
                               <Link
                                 key={child.id}
                                 href={`/${page.slug}/${child.slug}`}
-                                className={`block px-4 py-2 hover:bg-[#2f3780] hover:text-[#cd2b29] ${
-                                  isActiveChild ? "font-bold bg-[#1565c0]" : ""
+                                className={`block px-4 py-2 hover:bg-[#2f3780] hover:text-[#6366f1] ${
+                                  isActiveChild ? "font-bold bg-[#6366f1]" : ""
                                 }`}
                               >
                                 {child.title}
@@ -158,13 +158,7 @@ export default function Footer() {
         <div className="px-12">
           <div className="w-full border-t text-center py-6 text-sm leading-relaxed text-noShadow">
             Copyright © 2025 Auto Deal Reveal | All Rights Reserved.
-            <span>
-              <Link href={`/terms-and-conditions`}>
-                <div className="text-blue-400 hover:text-blue-300 underline transition duration-200">
-                  Terms and Conditions
-                </div>
-              </Link>
-            </span>
+            <span></span>
           </div>
         </div>
       </footer>

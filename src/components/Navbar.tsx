@@ -55,7 +55,7 @@ export default function Navbar() {
     childPages.filter((child) => child.page?.id === pageId);
 
   return (
-    <nav className="sticky top-0 z-50 opacity-100 md:pr-15 pl-6 py-4 lg:pr-20 whitespace-nowrap transition-all duration-300 bg-stone-200 text-red-800">
+    <nav className="sticky top-0 z-50 opacity-100 md:pr-15 pl-6 py-4 lg:pr-20 whitespace-nowrap transition-all duration-300 bg-[#131022]  shadow-lg border-b border-gray-800">
       <div className="flex justify-between items-center">
         {/* Logo or Brand Name */}
         <Link href="/" className="flex justify-start pl-6">
@@ -69,13 +69,14 @@ export default function Navbar() {
           />
         </Link>
         {/* Desktop Menu */}
-        <div className="hidden md:flex gap-10 pr-25 justify-end items-center flex-1 text-left">
+        <div className="hidden md:flex gap-10 pr-25 justify-end items-center flex-1 text-left text-[#edf2f4]">
           {pages.length === 0
             ? null
             : pages.map((page) => {
                 if (
                   page.slug === "terms-and-conditions" ||
-                  page.slug === "privacy-policy"
+                  page.slug === "privacy-policy" ||
+                  page.slug === "contact-us"
                 )
                   return; // Skip rendering children for "terms-and-conditions" page
                 const children = getChildren(page.id);
@@ -93,10 +94,10 @@ export default function Navbar() {
                   >
                     <Link
                       href={page.slug === "home" ? "/" : `/${page.slug}`}
-                      className={`flex items-center gap-2 text-xl ${
+                      className={`flex items-center gap-2 text-2xl ${
                         isActiveParent
-                          ? "text-blue-900 bg-white/10 p-2"
-                          : "hover:text-[#084d8c]"
+                          ? "text-[#6366f1]  p-2"
+                          : "hover:text-[#6366f1]"
                       }`}
                     >
                       {page.title}
@@ -104,7 +105,7 @@ export default function Navbar() {
                     </Link>
 
                     {children.length > 0 && openPageId === page.id && (
-                      <div className="absolute -left-20 bg-stone-300 text-red-800 rounded z-50 w-64">
+                      <div className="absolute -left-20 bg-[#2b2f56] text-stone-200 rounded z-50 w-64 p-2">
                         {children.map((child) => {
                           const isActiveChild =
                             pathname === `/${page.slug}/${child.slug}`;
@@ -113,8 +114,8 @@ export default function Navbar() {
                             <Link
                               key={child.id}
                               href={`/${page.slug}/${child.slug}`}
-                              className={`block px-4 py-2 hover:bg-[#b1b1b1] hover:text-[#084d8c] ${
-                                isActiveChild ? "font-bold bg-[#a1a1aa]" : ""
+                              className={`block px-4 py-2 hover:bg-[#2f3780] hover:text-[#6366f1] ${
+                                isActiveChild ? "font-bold bg-[#6366f1]" : ""
                               }`}
                             >
                               {child.title}
