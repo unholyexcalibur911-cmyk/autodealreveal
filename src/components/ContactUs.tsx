@@ -48,8 +48,8 @@ const ContactUs: React.FC = () => {
 
   return (
     <>
-      <section className="bg-[#2b2d42] w-full mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-12 md:py-20 shadow-xl text-center border-b-2 border-[#7777aa]">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl text-gray-300 mb-6 sm:mb-8 -mt-4 sm:-mt-8">
+      <section className="bg-[#2b2d42] w-full mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-12 md:py-20 shadow-xl border-b-2 border-[#7777aa]">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl text-gray-300 mb-6 sm:mb-8 -mt-4 sm:-mt-8 text-center font-bold">
           Contact Us
         </h1>
         <form
@@ -93,7 +93,7 @@ const ContactUs: React.FC = () => {
           }}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 md:gap-12 text-stone-100">
-            <div className="relative">
+            <div className="relative text-center">
               <input
                 type="text"
                 value={form.fullName}
@@ -255,7 +255,7 @@ const ContactUs: React.FC = () => {
                 .
               </label>
             </div>
-            <div className="flex items-start">
+            <div className="flex items-center">
               <input
                 type="checkbox"
                 id="marketing-agree"
@@ -288,20 +288,22 @@ const ContactUs: React.FC = () => {
               </label>
             </div>
           </div>
-          <button
-            type="submit"
-            title={
-              !nonMarketingAgreed && !marketingAgreed
-                ? "Please agree to at least one checkbox"
-                : ""
-            }
-            className="w-full sm:w-48 rounded-2xl bg-[#115596] py-3 font-semibold text-white
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              title={
+                !nonMarketingAgreed && !marketingAgreed
+                  ? "Please agree to at least one checkbox"
+                  : ""
+              }
+              className="w-full sm:w-48 rounded-2xl bg-[#115596] py-3 font-semibold text-white
           hover:bg-[#cd2b29] transition duration-200 mt-6
           disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={sending || (!nonMarketingAgreed && !marketingAgreed)}
-          >
-            {sending ? "Requesting..." : "Request a Demo"}
-          </button>
+              disabled={sending || (!nonMarketingAgreed && !marketingAgreed)}
+            >
+              {sending ? "Requesting..." : "Request a Demo"}
+            </button>
+          </div>
 
           {sent && <div className="text-green-400 mt-2">Message sent!</div>}
           {error && <div className="text-red-400 mt-2">{error}</div>}
