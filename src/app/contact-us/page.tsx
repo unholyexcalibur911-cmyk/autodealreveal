@@ -39,7 +39,7 @@ export default function ContactUsPage() {
     <main className="min-h-screen flex flex-col items-center justify-center p-8 bg-amber-50">
       <h1 className="text-4xl font-bold mb-4 text-black">Contact Us</h1>
       <p className="text-lg text-gray-600 mb-6">
-        We'd love to hear from you! Please fill out the form below.
+        We&apos;d love to hear from you! Please fill out the form below.
       </p>
 
       <div className="w-full max-w-4xl px-8 py-10 rounded-lg shadow-xl text-center bg-white">
@@ -182,10 +182,11 @@ export default function ContactUsPage() {
                 />
                 <span className="text-sm">
                   I agree to receive SMS messages related to one-time passcodes
-                  (OTP) for my account. Message frequency may vary. Reply 'HELP'
-                  for assistance or 'STOP' to unsubscribe. Standard message and
-                  data rates may apply. My information will be handled in
-                  accordance with the Privacy Policy.
+                  (OTP) for my account. Message frequency may vary. Reply
+                  &apos;HELP&apos; for assistance or &apos;STOP&apos; to
+                  unsubscribe. Standard message and data rates may apply. My
+                  information will be handled in accordance with the Privacy
+                  Policy.
                 </span>
               </label>
             </div>

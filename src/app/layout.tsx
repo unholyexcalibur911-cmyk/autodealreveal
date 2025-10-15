@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ContactUs from "@/components/ContactUs";
+
 import ClientWrapper from "@/components/ClientWrapper";
 
 export const metadata: Metadata = {
