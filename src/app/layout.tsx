@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import ContactUs from "@/components/ContactUs";
 import ClientWrapper from "@/components/ClientWrapper";
 
-
 export const metadata: Metadata = {
   title: "Auto Deal Reveal",
   description: "Auto Deal Reveal",
@@ -22,7 +21,7 @@ export default function RootLayout({
         <ClientWrapper>
           <Navbar />
           <main>{children}</main>
-          <ContactUs />
+
           <Footer />
         </ClientWrapper>
       </body>
