@@ -74,9 +74,12 @@ export default function Footer() {
               {/* Social media items */}
             </div>
 
-            <button className="bg-[#6366f1] hover:bg-[#] px-8 py-4 font-bold mt-6 hover:text-white transition-colors duration-300 ease-in-out">
-              EMAIL US
-            </button>
+            <Link
+              href="/contact-us"
+              className="bg-[#6366f1] hover:bg-[#] px-8 py-4 font-bold mt-6 hover:text-white transition-colors duration-300 ease-in-out"
+            >
+              Contact Us
+            </Link>
           </div>
 
           {/* 2nd Column */}
