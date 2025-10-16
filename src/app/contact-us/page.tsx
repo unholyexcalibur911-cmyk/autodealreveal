@@ -1,8 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import Link from "next/link";
+
+// Initialize emailjs with public key
+const initializeEmailJS = () => {
+  emailjs.init("ZnKdIvcglCuqM1yxP");
+};
 
 export default function ContactUsPage() {
   // Label animation states
@@ -23,17 +29,69 @@ export default function ContactUsPage() {
     },
   };
 
-  // States
+  // Form state with consistent naming
   const [form, setForm] = useState({
     fullName: "",
     email: "",
     subject: "",
     message: "",
+    phone: "", // Changed from Phone to phone for consistency
   });
   const [smsConsent, setSmsConsent] = useState(false);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
+
+  // Initialize emailjs on component mount
+  useEffect(() => {
+    initializeEmailJS();
+  }, []);
+
+  // Form submission handler with input sanitization
+  const handleSubmit = async () => {
+    // Basic input sanitization
+    const sanitizedForm = {
+      fullName: form.fullName.trim().replace(/[<>"'&]/g, ""),
+      email: form.email.trim().replace(/[<>"'&]/g, ""),
+      subject: form.subject.trim().replace(/[<>"'&]/g, ""),
+      message: form.message.trim().replace(/[<>"'&]/g, ""),
+      phone: form.phone.trim().replace(/[<>"'&]/g, ""),
+    };
+
+    if (!smsConsent) {
+      setError("You must agree to the SMS consent to submit the form.");
+      return;
+    }
+
+    setSending(true);
+    setError("");
+    setSent(false);
+
+    try {
+      await emailjs.send("service_y22dn7p", "template_8odl0pt", {
+        full_name: sanitizedForm.fullName,
+        from_email: sanitizedForm.email,
+        subject: sanitizedForm.subject,
+        message: sanitizedForm.message,
+        phone: sanitizedForm.phone,
+        sms_consent: smsConsent,
+      });
+      setSent(true);
+      // Reset all form fields including phone
+      setForm({
+        fullName: "",
+        email: "",
+        subject: "",
+        message: "",
+        phone: "",
+      });
+      setSmsConsent(false);
+    } catch (error) {
+      setError("Failed to send. Please try again.");
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-8 bg-amber-50">
@@ -43,39 +101,7 @@ export default function ContactUsPage() {
       </p>
 
       <div className="w-full max-w-4xl px-8 py-10 rounded-lg shadow-xl text-center bg-white">
-        <form
-          className="space-y-6"
-          onSubmit={async (e) => {
-            e.preventDefault();
-            if (!smsConsent) {
-              setError("You must agree to the SMS consent to submit the form.");
-              return;
-            }
-            setSending(true);
-            setError("");
-            setSent(false);
-            try {
-              await emailjs.send(
-                "service_y22dn7p",
-                "template_8odl0pt",
-                {
-                  full_name: form.fullName,
-                  from_email: form.email,
-                  subject: form.subject,
-                  message: form.message,
-                  sms_consent: smsConsent,
-                },
-                "ZnKdIvcglCuqM1yxP"
-              );
-              setSent(true);
-              setForm({ fullName: "", email: "", subject: "", message: "" });
-              setSmsConsent(false);
-            } catch {
-              setError("Failed to send. Please try again.");
-            }
-            setSending(false);
-          }}
-        >
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-stone-900">
             {/* Full Name */}
             <div className="relative">
@@ -147,6 +173,26 @@ export default function ContactUsPage() {
               />
             </div>
 
+            {/* Phone */}
+            <div className="relative md:col-span-2 ">
+              <input
+                type="phone"
+                value={form.phone}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, phone: e.target.value }))
+                }
+                className="w-full border-b-2 border-gray-300 bg-transparent px-4 pt-6 pb-3 focus:outline-none focus:border-blue-600"
+              />
+              <motion.span
+                initial="unfocused"
+                animate={form.phone ? "focused" : "unfocused"}
+                variants={labelVariants}
+                style={{ position: "absolute", pointerEvents: "none" }}
+              >
+                Phone Number
+              </motion.span>
+            </div>
+
             {/* Message */}
             <div className="md:col-span-2 relative">
               <textarea
@@ -185,8 +231,14 @@ export default function ContactUsPage() {
                   (OTP) for my account. Message frequency may vary. Reply
                   &apos;HELP&apos; for assistance or &apos;STOP&apos; to
                   unsubscribe. Standard message and data rates may apply. My
-                  information will be handled in accordance with the Privacy
-                  Policy.
+                  information will be handled in accordance with the{" "}
+                  <Link
+                    target="_blank"
+                    href="/privacy-policy"
+                    className="text-blue-400 hover:text-blue-300 underline transition duration-200"
+                  >
+                    Privacy Policy.
+                  </Link>
                 </span>
               </label>
             </div>
@@ -195,7 +247,7 @@ export default function ContactUsPage() {
           {/* Submit */}
           <button
             type="submit"
-            className="w-55 rounded-2xl bg-[#115596] py-3 font-semibold text-white hover:bg-[#6366f1] transition-all cursor-pointer disabled:opacity-50"
+            className="w-full max-w-xs rounded-2xl bg-[#115596] py-3 font-semibold text-white hover:bg-[#6366f1] transition-all cursor-pointer disabled:opacity-50"
             disabled={sending}
           >
             {sending ? "Sending..." : "Submit Contact Form"}
