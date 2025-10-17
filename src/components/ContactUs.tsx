@@ -17,7 +17,7 @@ const ContactUs: React.FC = () => {
       left: "0.75rem",
       fontSize: "0.75rem",
       color: "#2563eb",
-      backgroundColor: "#2b2d42",
+      backgroundColor: "#ffffff",
       padding: "0 0.25rem",
       translateY: "0%",
       transition: { duration: 0.2 },
@@ -48,9 +48,26 @@ const ContactUs: React.FC = () => {
 
   return (
     <>
-      <section className="bg-[#2b2d42] w-full mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-12 md:py-20 shadow-xl border-b-2 border-[#7777aa]">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl text-gray-300 mb-6 sm:mb-8 -mt-4 sm:-mt-8 text-center font-bold">
-          Contact Us
+      <section className="bg-none w-auto max-w-5xl mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-12 md:py-20 ">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl text-black mb-6 sm:mb-8 -mt-4 sm:-mt-8 text-center font-bold">
+          Why Wait?
+        </h1>
+        <div className="mb-6 sm:mb-8 text-center">
+          <span className="text-base sm:text-lg md:text-xl font-medium text-[rgb(98,101,131)] block">
+            Sign up for early alerts and be the first to unlock launch-day perks, like VIP deal previews and bonus incentives. Whether you're eyeing a sleek sedan or a rugged SUV, Auto Deal Reveal has your next ride covered.
+          </span>
+        </div>
+        <div className="text-center my-4 whitespace-nowrap">
+          <p className="leading-[1.5]">
+            <span className="font-bold text-[19px] sm:text-[24px] text-[rgb(19,16,34)] whitespace-nowrap"> Launching Soon </span>
+            <span className="text-[19px] sm:text-[24px] text-[rgb(19,16,34)] whitespace-nowrap"> – Stay Tuned!</span>
+          </p>
+        </div>
+      <br /><br />
+      <hr className="border-t-2 border-gray-400 my-6 w-full" />
+      <br /><br />
+        <h1 className="text-2xl sm:text-3xl md:text-4xl text-black mb-6 sm:mb-8 -mt-4 sm:-mt-8 text-left font-bold">
+          [Subscribe Now]
         </h1>
         <form
           className="space-y-8 sm:space-y-10"
@@ -92,7 +109,7 @@ const ContactUs: React.FC = () => {
             setSending(false);
           }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 md:gap-12 text-stone-100">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-6 sm:gap-10 md:gap-12 text-stone-900">
             <div className="relative text-center">
               <input
                 type="text"
@@ -100,16 +117,35 @@ const ContactUs: React.FC = () => {
                 onChange={(e) =>
                   setForm((f) => ({ ...f, fullName: e.target.value }))
                 }
-                className="w-full border-b-2 border-white bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
+                className="w-full border-b-2 border-gray-300 bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
               />
               <motion.span
                 initial="unfocused"
                 animate={form.fullName ? "focused" : "unfocused"}
                 variants={labelVariants}
                 style={{ position: "absolute", pointerEvents: "none" }}
-                className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-[#2b2d42] text-xs sm:text-sm"
+                className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-white text-xs sm:text-sm"
               >
                 Full Name
+              </motion.span>
+            </div>
+            <div className="relative">
+              <input
+                type="tel"
+                value={form.phone}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, phone: e.target.value }))
+                }
+                className="w-full border-b-2 border-gray-300 bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
+              />
+              <motion.span
+                initial="unfocused"
+                animate={form.phone ? "focused" : "unfocused"}
+                variants={labelVariants}
+                style={{ position: "absolute", pointerEvents: "none" }}
+                className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-white text-xs sm:text-sm"
+              >
+                Phone Number
               </motion.span>
             </div>
             <div className="relative">
@@ -120,104 +156,17 @@ const ContactUs: React.FC = () => {
                 onChange={(e) =>
                   setForm((f) => ({ ...f, email: e.target.value }))
                 }
-                className="w-full border-b-2 border-white bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
+                className="w-full border-b-2 border-gray-300 bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
               />
               <motion.span
                 initial="unfocused"
                 animate={form.email ? "focused" : "unfocused"}
                 variants={labelVariants}
                 style={{ position: "absolute", pointerEvents: "none" }}
-                className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-[#2b2d42] text-xs sm:text-sm"
+                className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-white text-xs sm:text-sm"
               >
                 Email
               </motion.span>
-            </div>
-            <div className="relative">
-              <input
-                type="text"
-                value={form.dealership}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, dealership: e.target.value }))
-                }
-                className="w-full border-b-2 border-white bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
-              />
-              <motion.span
-                initial="unfocused"
-                animate={form.dealership ? "focused" : "unfocused"}
-                variants={labelVariants}
-                style={{ position: "absolute", pointerEvents: "none" }}
-                className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-[#2b2d42] text-xs sm:text-sm"
-              >
-                Dealership Name or Group
-              </motion.span>
-            </div>
-            <div className="relative">
-              <input
-                type="tel"
-                value={form.phone}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, phone: e.target.value }))
-                }
-                className="w-full border-b-2 border-white bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
-              />
-              <motion.span
-                initial="unfocused"
-                animate={form.phone ? "focused" : "unfocused"}
-                variants={labelVariants}
-                style={{ position: "absolute", pointerEvents: "none" }}
-                className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-[#2b2d42] text-xs sm:text-sm"
-              >
-                Phone Number
-              </motion.span>
-            </div>
-            <div className="md:col-span-2 relative">
-              <motion.span
-                initial="unfocused"
-                animate={form.referral ? "focused" : "unfocused"}
-                variants={labelVariants}
-                style={{ position: "absolute", pointerEvents: "none" }}
-                className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-[#2b2d42] text-xs sm:text-sm"
-              >
-                How did you hear about us
-              </motion.span>
-              <select
-                id="referral"
-                value={form.referral}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, referral: e.target.value }))
-                }
-                className="w-full border-b-2 border-white bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:text-white focus:bg-[#2b2d42] focus:outline-none focus:border-blue-600 text-base sm:text-lg"
-              >
-                <option value=""></option>
-                <option value="Dealer referral">Dealer referral</option>
-                <option value="Trade show">Trade show</option>
-                <option value="OEM">OEM</option>
-                <option value="Social Media">Social Media</option>
-                <option value="Blog">Blog</option>
-                <option value="Search Engine">Search Engine</option>
-                <option value="Other">Other (please specify)</option>
-              </select>
-              {form.referral === "Other" && (
-                <div className="relative mt-2">
-                  <input
-                    type="text"
-                    value={form.otherReferral}
-                    onChange={(e) =>
-                      setForm((f) => ({ ...f, otherReferral: e.target.value }))
-                    }
-                    className="w-full border-b-2 border-white bg-transparent px-3 sm:px-4 pt-5 sm:pt-6 pb-2 sm:pb-3 focus:outline-none focus:border-blue-600 text-base sm:text-lg"
-                  />
-                  <motion.span
-                    initial="unfocused"
-                    animate={form.otherReferral ? "focused" : "unfocused"}
-                    variants={labelVariants}
-                    style={{ position: "absolute", pointerEvents: "none" }}
-                    className="font-medium rounded absolute pointer-events-none px-1 py-0 bg-[#2b2d42] text-xs sm:text-sm"
-                  >
-                    Please specify
-                  </motion.span>
-                </div>
-              )}
             </div>
           </div>
           <div className="flex flex-col space-y-4 mt-6">
@@ -232,11 +181,11 @@ const ContactUs: React.FC = () => {
                   transition duration-200 ease-in-out
                   hover:border-blue-400
                   checked:bg-blue-600 checked:border-transparent
-                  focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#2b2d42]"
+                  focus:ring-2 focus:ring-offset-2 focus:ring-offset-white"
               />
               <label
                 htmlFor="non-marketing-agree"
-                className="ml-3 block text-sm text-gray-300 leading-6"
+                className="ml-3 block text-sm text-black leading-6"
               >
                 I agree to receive non-marketing SMS messages related to
                 customer care, product troubleshooting, service updates,
@@ -266,11 +215,11 @@ const ContactUs: React.FC = () => {
                   transition duration-200 ease-in-out
                   hover:border-blue-400
                   checked:bg-blue-600 checked:border-transparent
-                  focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#2b2d42]"
+                  focus:ring-2 focus:ring-offset-2 focus:ring-offset-white"
               />
               <label
                 htmlFor="marketing-agree"
-                className="ml-3 block text-sm text-gray-300 leading-6"
+                className="ml-3 block text-sm text-black leading-6"
               >
                 I agree to receive marketing SMS messages related to promotional
                 offers. Message frequency may vary.{" "}
@@ -296,12 +245,12 @@ const ContactUs: React.FC = () => {
                   ? "Please agree to at least one checkbox"
                   : ""
               }
-              className="w-full sm:w-48 rounded-2xl bg-[#115596] py-3 font-semibold text-white
-          hover:bg-[#cd2b29] transition duration-200 mt-6
+              className="w-full sm:w-48 rounded-2xl bg-none border-[#115596] border-2 py-3 font-semibold text-[#115596]
+          hover:bg-[#115596] transition duration-200 mt-6
           disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={sending || (!nonMarketingAgreed && !marketingAgreed)}
             >
-              {sending ? "Requesting..." : "Request a Demo"}
+              {sending ? "Requesting..." : "Send Form"}
             </button>
           </div>
 
@@ -320,3 +269,4 @@ const ContactUs: React.FC = () => {
 };
 
 export default ContactUs;
+

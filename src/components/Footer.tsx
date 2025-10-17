@@ -33,22 +33,26 @@ export default function Footer() {
         const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
         const pageRes = await fetch(
           `${baseUrl}/api/pages?populate[Sections][populate]=*`
-        ); // Fetch page sections
+        );
         const pageData = await pageRes.json();
+
         const childRes = await fetch(
           `${baseUrl}/api/childpages?populate[page]=true&populate[sections][populate]=*`
-        ); // Fetch child page sections
+        );
         const childData = await childRes.json();
+
         const order = ["home", "about-us", "inventory", "products"];
         const sortedPages = [...(pageData.data || [])].sort(
-          (a: Page, b: Page) => order.indexOf(a.slug) - order.indexOf(b.slug)
+          (a: any, b: any) => order.indexOf(a.slug) - order.indexOf(b.slug)
         );
+
         setPages(sortedPages);
         setChildPages(childData.data || []);
       } catch (error) {
         console.error("Error fetching pages:", error);
       }
     }
+
     fetchPages();
   }, []);
 
@@ -56,115 +60,21 @@ export default function Footer() {
     childPages.filter((child) => child.page?.id === pageId);
 
   return (
-    <>
-      <footer className="bg-[#131022] text-stone-200 text-shadow-lg pb-5">
-        {/* Top Section */}
-        <div className=" px-6 md:px-18 max-w-6xl mx-auto py-15 grid gap-10 sm:grid-cols-3 text-center md:text-left">
-          {/* 1st Column */}
-          <div className="space-y-3">
-            <h1 className="font-bold text-lg leading-snug">
-              Contact us today for a custom <br />
-              consultation.
-            </h1>
-            {/* Contact number */}
-            <div className="text-[#cd2b29] text-lg"></div>
+    <footer className="bg-[#131022] text-white">
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start sm:justify-between gap-6">
 
-            {/* Social Icons */}
-            <div className="flex justify-center md:justify-start gap-4 mt-4 text-3xl">
-              {/* Social media items */}
-            </div>
-
-            <Link
-              href="/contact-us"
-              className="bg-[#6366f1] hover:bg-[#] px-8 py-4 font-bold mt-6 hover:text-white transition-colors duration-300 ease-in-out"
-            >
-              Contact Us
-            </Link>
-          </div>
-
-          {/* 2nd Column */}
-          <div className="flex flex-col space-y-3 text-white ">
-            {pages.length === 0
-              ? null
-              : pages.map((page) => {
-                  const children = getChildren(page.id);
-                  const isActiveParent =
-                    pathname === `/${page.slug}` ||
-                    pathname.startsWith(`/${page.slug}/`) ||
-                    (page.slug === "home" && pathname === "/");
-
-                  return (
-                    <div
-                      key={page.id}
-                      className="relative"
-                      onMouseEnter={() => setOpenPageId(page.id)}
-                      onMouseLeave={() => setOpenPageId(null)}
-                    >
-                      <Link
-                        href={page.slug === "home" ? "/" : `/${page.slug}`}
-                        className={`flex items-center gap-2 text-xl ${
-                          isActiveParent
-                            ? "text-[#6366f1]"
-                            : "hover:text-[#6366f1]"
-                        }`}
-                      >
-                        {page.title}
-                        {children.length > 0 && <ChevronDown size={16} />}
-                      </Link>
-
-                      {children.length > 0 && openPageId === page.id && (
-                        <div className="absolute left-0 bg-[#2b2f56] text-stone-200 p-2 rounded z-50 w-64 h-32 overflow-auto">
-                          {children.map((child) => {
-                            const isActiveChild =
-                              pathname === `/${page.slug}/${child.slug}`;
-                            return (
-                              <Link
-                                key={child.id}
-                                href={`/${page.slug}/${child.slug}`}
-                                className={`block px-4 py-2 hover:bg-[#2f3780] hover:text-[#6366f1] ${
-                                  isActiveChild ? "font-bold bg-[#6366f1]" : ""
-                                }`}
-                              >
-                                {child.title}
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-          </div>
-
-          {/* 3rd Column */}
-          <div>
-            <Image
-              src="/logo.png"
-              alt="Auto Deal Reveal Logo"
-              width={160}
-              height={80}
-              className="h-13 w-auto mx-auto md:mx-0 "
-              priority
-            />
-            <div className="mt-12 space-y-2 text-lg">
-              <div className="text-noShadow text-stone-200 font-bold">
-                Auto Deal Reveal, Inc.
-              </div>
-              {/* Location/Address */}
-              <div className="font-light"></div>
-              <div className="font-light"></div>
+          <div className="text-center sm:text-left">
+            <p className="text-white font-bold">
+              Contact Us:{" "}
+              <span className="text-[#6366f1]">(814) 707-9899</span>
+            </p>
+            <div className="text-sm text-gray-400 mt-2">
+              © 2025 All Rights Reserved | Auto Deal Reveal
             </div>
           </div>
         </div>
-
-        {/* Bottom Section */}
-        <div className="px-12">
-          <div className="w-full border-t text-center py-6 text-sm leading-relaxed text-noShadow">
-            Copyright © 2025 Auto Deal Reveal | All Rights Reserved.
-            <span></span>
-          </div>
-        </div>
-      </footer>
-    </>
+      </div>
+    </footer>
   );
 }

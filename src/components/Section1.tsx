@@ -72,7 +72,7 @@ export default function Section1({
               : "opacity-0 -translate-x-4 md:-translate-x-16"
           }`}
         >
-          <h1 className="text-3xl md:text-3xl text-stone-900 font-bold mb-6 2xl:mb-12 text-left">
+          <h1 className="text-4xl md:text-4xl text-stone-900 font-bold mb-6 2xl:mb-12 text-left">
             {title}
           </h1>
 

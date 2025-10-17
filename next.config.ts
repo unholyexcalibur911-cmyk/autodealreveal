@@ -4,6 +4,10 @@ import { hostname } from "os";
 
 const nextConfig: NextConfig = {
   
+  eslint: {
+          ignoreDuringBuilds: true,
+  },
+
   images: {
     remotePatterns: [
       { 

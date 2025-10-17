@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { ChevronDown, Menu, X } from "lucide-react";
-import Support from "./Support";
+import PrivacyPolicyModal from "./PrivacyPolicyModal";
 
 interface Page {
   id: number;
@@ -24,6 +24,7 @@ interface ChildPage {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [privacyOpen, setPrivacyOpen] = useState(false);
   const [pages, setPages] = useState<Page[]>([]);
   const [childPages, setChildPages] = useState<ChildPage[]>([]);
   const [openPageId, setOpenPageId] = useState<number | null>(null);
@@ -38,7 +39,7 @@ export default function Navbar() {
         const pageData = await pageRes.json();
         const childRes = await fetch(`${baseUrl}/api/childpages?populate=page`);
         const childData = await childRes.json();
-        const order = ["home", "products", "about-us"];
+        const order = ["home", "products", "about-us", "privacy-policy"];
         const sortedPages = [...(pageData.data || [])].sort(
           (a: Page, b: Page) => order.indexOf(a.slug) - order.indexOf(b.slug)
         );
@@ -64,18 +65,17 @@ export default function Navbar() {
             alt="Auto Deal Reveal Logo"
             width={400}
             height={80}
-            className="h-15 w-auto lg:block pr-5 fixed relative"
+            className="h-15 w-auto lg:block pr-5"
             priority
           />
         </Link>
         {/* Desktop Menu */}
-        <div className="hidden md:flex gap-10 pr-25 justify-end items-center flex-1 text-left text-[#edf2f4]">
+        <div className="hidden md:flex pr-25 justify-end items-center flex-1 text-left text-[#edf2f4]">
           {pages.length === 0
             ? null
             : pages.map((page) => {
                 if (
                   page.slug === "terms-and-conditions" ||
-                  page.slug === "privacy-policy" ||
                   page.slug === "contact-us"
                 )
                   return; // Skip rendering children for "terms-and-conditions" page
@@ -94,10 +94,10 @@ export default function Navbar() {
                   >
                     <Link
                       href={page.slug === "home" ? "/" : `/${page.slug}`}
-                      className={`flex items-center gap-2 text-2xl ${
+                      className={`flex items-center gap-0 text-2xl ${
                         isActiveParent
-                          ? "text-[#6366f1]  p-2"
-                          : "hover:text-[#6366f1]"
+                          ? "bg-[#6366f1] text-white px-4 py-4 "
+                          : "hover:bg-[#6366f1] px-4 py-4 "
                       }`}
                     >
                       {page.title}
@@ -127,8 +127,7 @@ export default function Navbar() {
                   </div>
                 );
               })}
-          {/* Support Button */}
-          <Support />
+
         </div>
         {/* Mobile Menu Button */}
         <button

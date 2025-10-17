@@ -17,7 +17,7 @@ export default function TextSection({ title, content, background }: TextSectionP
   const testPoster = "/testBackground.jpg";
 
   return (
-    <section className="min-h-[500px] relative py-24 text-gray-800 bg-stone-300 -z-20">
+    <section className="min-h-[500px] relative py-24 text-gray-800 bg-linear-to-b from-stone-300 to-white -z-20">
       {background?.url ? (
         <Image
           src={background.url}

@@ -22,38 +22,88 @@ export default function Hero({
   buttonText_2,
   buttonURL_2,
 }: HeroProps) {
+  const isVideo = (url?: string) => {
+    if (!url) return false;
+    const videoExts = [".mp4", ".webm", ".ogg", ".mov"];
+    const lower = url.split("?")[0].toLowerCase();
+    return videoExts.some((ext) => lower.endsWith(ext));
+  };
+
   return (
-    <section className="relative flex h-screen w-full flex-col items-center justify-center text-stone-100">
+    <section className="relative flex h-screen w-full flex-col items-center justify-center text-stone-100 cols-2">
       {/* Background Image */}
-      {background?.url && (
-        <Image
+      {background?.url && isVideo(background.url) ? (
+        <video
+          className="absolute inset-0 w-full h-full object-cover brightness-75 -z-20"
           src={background.url}
-          alt={title}
-          fill
-          priority
-          quality={90}
-          className="object-cover brightness-75"
-        />
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          Your browser does not support the video tag.
+        </video>
+      ) : (
+        background?.url && (
+          <Image
+            src={background.url}
+            alt={title}
+            fill
+            priority
+            quality={90}
+            className="object-cover brightness-75"
+          />
+        )
       )}
 
       {/* Content Container */}
-      <div className="absolute z-10 w-full px-4 text-center sm:px-6 lg:px-8">
+      <div className="absolute z-10 w-full px-8 sm:px-12 lg:px-20 left-0">
         {/* Gradient Overlay */}
         <div className="absolute inset-0" />
 
-        {/* Content */}
-        <div className="relative mx-auto max-w-5xl">
-          <h1 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl text-center">
-            {title}
-          </h1>
+        {/* Content (left-aligned to match design) */}
+        <div className="relative mx-auto max-w-5xl text-left">
+          {/* Split title into prefix and rest (e.g. "Auto Deal Reveal:" + "Unveiling the Future of Car Buying") */}
+          {(() => {
+            const hasColon = title?.includes(":");
+            const prefix = hasColon ? title.split(":", 1)[0] + ":" : null;
+            const rest = hasColon ? title.split(":").slice(1).join(":").trim() : title;
+            return (
+              <>
+                {prefix && (
+                  <div className="mb-2 text-3xl sm:text-4xl md:text-5xl font-bold lg:text-6xl text-[#6366f1]">
+                    {prefix}
+                  </div>
+                )}
+                <h1 className="mb-4 text-3xl sm:text-4xl md:text-6xl lg:text-6xl xl:text-6xl font-bold tracking-tight text-[#0b1220] leading-tight">
+                  {rest}
+                </h1>
+              </>
+            );
+          })()}
 
-          {subtitle && (
-            <p className="mb-6 text-base sm:text-lg md:text-xl lg:text-2xl text-center">
-              {subtitle}
-            </p>
-          )}
+          {/* Subtitle: split into a prominent first sentence and a smaller description */}
+          {subtitle && (() => {
+            const match = subtitle.match(/^[^.!?]*[!\.?]/);
+            const main = match ? match[0].trim() : subtitle;
+            const remainder = match ? subtitle.slice(match[0].length).trim() : null;
+            return (
+              <div className="mb-6">
+                {main && (
+                  <div className="text-2xl sm:text-3xl font-semibold text-[#6366f1] mb-2">
+                    {main}
+                  </div>
+                )}
+                {remainder && (
+                  <div className="text-sm sm:text-xl text-gray-300">
+                    {remainder}
+                  </div>
+                )}
+              </div>
+            );
+          })()}
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-center">
+          <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-start">
             {buttonText && buttonURL && (
               <Link
                 href={buttonURL}

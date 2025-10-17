@@ -18,7 +18,7 @@ export default function TextSection({ title, content, background }: TextSectionP
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   return (
-    <section className="min-h-[500px] relative py-24 text-gray-800 bg-white -z-20">
+    <section className="min-h-[500px] relative py-24 text-gray-800 bg-linear-to-b from-white/50 to-stone-200/50 -z-5">
       {/* Background */}
       {background?.url ? (
         <Image
