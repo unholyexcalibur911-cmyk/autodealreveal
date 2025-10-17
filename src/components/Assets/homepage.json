@@ -2,13 +2,13 @@
   "title": "Auto Deal Reveal: Unveiling the Future of Car Buying",
   "subtitle": "Get Ready for the Big Reveal! Auto Deal Reveal is set to launch Soon.",
   "background": {
-    "url": "/MovingBg.mp4",
+    "url": "/Background.mp4",
     "alt": "Desert road with car - Auto Deal Reveal background"
   },
   "buttonText": "Get Ready",
   "buttonURL": "/contact-us",
   "alternateVideo": {
-    "url": "/MovingBg.mp4",
+    "url": "/Background.mp4",
     "note": "Optional video background (use if available)."
   }
 }

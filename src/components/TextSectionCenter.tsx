@@ -13,7 +13,7 @@ interface TextSectionProps {
 }
 
 export default function TextSection({ title, content, background }: TextSectionProps) {
-  const testVideo = "/MovingBg.mp4";
+  const testVideo = "/Background.mp4";
   const testPoster = "/testBackground.jpg";
   const videoRef = React.useRef<HTMLVideoElement>(null);
 

@@ -8,7 +8,7 @@ export default function DefaultBackground() {
             loop
             muted
             playsInline
-            src="/MovingBg.mp4"
+            src="/Background.mp4"
             className="absolute inset-0 w-full h-full object-cover -z-10 opacity-2"
         />
     );
